@@ -1,0 +1,62 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- affirm:
+    use_entities: true
+- greet:
+    use_entities: true
+- choose_location:
+    use_entities: true
+- change_location:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- confirmd:
+    use_entities: true
+- not_confimed:
+    use_entities: true
+- parcel_info:
+    use_entities: true
+entities:
+- location
+slots: {}
+responses:
+  utter_greet:
+  - text: Hello Hager, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
+  utter_ask_for_time:
+  - text: Does 10am in front of building Copernic suit you?
+  utter_change_location:
+  - text: Please choose a location
+  utter_confirmed:
+  - text: Great, your delivry time and location are confirmed.
+  utter_not_confirmed:
+  - text: okay,I will pick another time and come back to you.
+  utter_parcel_info:
+  - text: Sorry, I don't have any information about the parcel.
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+actions:
+- action_choose_location
+forms: {}
+e2e_actions: []
