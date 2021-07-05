@@ -122,7 +122,7 @@ nlu:
     - what about [Curie](location)
     - make it in front of [Laplace] (location)
     - building [Montgomerie](location)
-    - [Laplace] (location) building
+    - building [Laplace] (location) 
      
 # - intent: choose_location
 #   examples: |
