@@ -2,7 +2,7 @@
  
 ## Rasa Architecture:
 
-![Rasa Architecture](https://github.com/RasaHQ/rasa-for-beginners/blob/master/images/bot_conversation.png?raw=true)
+![Rasa Architecture](https://github.com/ayaallaa/Delivery-Chatbot/blob/main/Rasa_Chatbot/images/rasa%20architecture.png?raw=true)
 
 Rasa has two main components:
 
@@ -29,10 +29,6 @@ Rasa has two main components:
 8. models/<timestamps>.tar.gz: the initial model, all the trained models stored in the models folder. For retraining the model, we use rasa train command.
 
 
-## How to Install Rasa:
-
-https://rasa.com/docs/rasa/user-guide/installation/
-
 ## Rasa Command lines:
 
 https://rasa.com/docs/rasa/command-line-interface
@@ -42,16 +38,16 @@ https://rasa.com/docs/rasa/command-line-interface
 
 1. Install Rasa:
 
-How to Install Rasa: https://rasa.com/docs/rasa/user-guide/installation/
+   How to Install Rasa: https://rasa.com/docs/rasa/user-guide/installation/
 
 2. Train the model: (if anything changed in nlu,domain or stories files we should train the models again)
 
-``rasa train``
+   ``rasa train``
 
 3. Open a second terminal window and start the action server: (if anything changed in the actions file we should restart the action server only)
 
-``rasa run actions``
+   ``rasa run actions``
 
 4. Return to the first terminal window and start the assistant on the command line:
 
-``rasa shell``
+   ``rasa shell``
