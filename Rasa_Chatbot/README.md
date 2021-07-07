@@ -1,32 +1,57 @@
-# Rasa for Beginners wellness-check-bot
-This assistant is a project for the Rasa for Beginners course. 
+# Rasa Delivery Chatbot
+ 
+## Rasa Architecture:
 
-It uses a form to collect a user's daily health information and saves it to an Airtable.
+![Rasa Architecture](https://github.com/RasaHQ/rasa-for-beginners/blob/master/images/bot_conversation.png?raw=true)
 
-![wellness-bot-conversation](https://github.com/RasaHQ/rasa-for-beginners/blob/master/images/bot_conversation.png?raw=true)
+Rasa has two main components:
 
-![wellness-bot-conversation](https://github.com/RasaHQ/rasa-for-beginners/blob/master/images/airtable.png?raw=true)
+1. Rasa NLU (Natural Language Understanding): Rasa NLU is an open-source natural language processing tool for intent classification (decides what the user is asking), extraction of the entity from the bot in the form of structured data and helps the chatbot understand what user is saying.
 
-## Running the assistant
-1. Download the Airtable template and generate an [Airtable API token](https://support.airtable.com/hc/en-us/articles/219046777-How-do-I-get-my-API-key-). You'll also need to locate your Table Name and Base ID, which can be found in the [Airtable API docs](https://airtable.com/api).
+2. Rasa Core: a chatbot framework with machine learning-based dialogue management which takes the structured input from the NLU and predicts the next best action using a probabilistic model like LSTM neural network rather than if/else statement. Underneath the hood,  it also uses reinforcement learning to improve the prediction of the next best action.
 
-2. Make a copy of the `.example-env` and rename it `.env`. Add your Airtable API token, Base ID, and Table Name to the file.
+## Files: 
 
-3. Install Rasa Open Source: https://rasa.com/docs/rasa/user-guide/installation/
-(note - this project is compatible with Rasa Open Source version 1.10.x. We plan to update this tutorial for the 2.0 release soon)
+1. actions.py: This file is used for creating custom actions. In case you want to call an external server or fetch external API data, you can define your actions here.
 
-4. Install the action server dependencies
+2. config.yml: This file defines the configuration of the NLU and core model. If you are using any model outside the NLU model, you have to define the pipeline here.
 
-``pip install -r requirements-actions.txt``
+3. credentials.yml: This file is used to store credentials for connecting to external services such as Facebook Messenger, Slack, etc
 
-5. Train the model:
+4. data/nlu.md: In this file, we define our intents (what the user could ask the bot to do? ).  These intents are then used in training the NLU model.
+
+5. data/stories.md: Stories are the sample conversation between a user and bot in the form of intents, responses and actions. Rasa stories are a form of training data used to train the Rasa’s dialogue management models.
+
+6. domain.yml: This file lists the different intent (the things which you expect from the user) with bot’s responses and actions which it can perform.
+
+7. endpoints.yml: This defines the details for connecting channels like Slack, FB messenger, etc. for storing chats data in the online databases like Redis, etc.
+
+8. models/<timestamps>.tar.gz: the initial model, all the trained models stored in the models folder. For retraining the model, we use rasa train command.
+
+
+## How to Install Rasa:
+
+https://rasa.com/docs/rasa/user-guide/installation/
+
+## Rasa Command lines:
+
+https://rasa.com/docs/rasa/command-line-interface
+
+
+## Getting Started: 
+
+1. Install Rasa:
+
+How to Install Rasa: https://rasa.com/docs/rasa/user-guide/installation/
+
+2. Train the model: (if anything changed in nlu,domain or stories files we should train the models again)
 
 ``rasa train``
 
-6. Open a second terminal window and start the action server:
+3. Open a second terminal window and start the action server: (if anything changed in the actions file we should restart the action server only)
 
 ``rasa run actions``
 
-7. Return to the first terminal window and start the assistant on the command line:
+4. Return to the first terminal window and start the assistant on the command line:
 
 ``rasa shell``
