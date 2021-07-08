@@ -40,6 +40,8 @@ https://rasa.com/docs/rasa/command-line-interface
 
    How to Install Rasa: https://rasa.com/docs/rasa/user-guide/installation/
 
+__At the time of writing, you should not install it in a python 3.9 environment, it installs quielty but then fails to run !__
+ 
 2. Train the model: (if anything changed in nlu,domain or stories files we should train the models again)
 
    ``rasa train``
