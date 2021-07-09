@@ -51,44 +51,10 @@ nlu:
     - don't like that
     - no way
     - not really
-    - it does'nt work for me
-    - no it does'nt
-    - pick another time
+    - it doesn't work for me
+    - no it doesn't
     
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-    
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-    
+
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -100,12 +66,17 @@ nlu:
 - intent: parcel_info
   examples: |
     - what is the parcel like?
-    - what it contains?
-    - who send it?
-    - where it comes from?
+    - what does it contain?
+    - who sent it?
+    - where does it come from?
     - what parcel?
     - what info do you have on this parcel?
     
+- intent: change_time
+  examples: |
+    - pick another time
+    - no, I'm busy
+
 - intent: change_location
   examples: |
     - no this location doesn't suit me
@@ -120,10 +91,12 @@ nlu:
   examples: |
     - what about [Chappe](location)
     - what about [Curie](location)
-    - make it in front of [Laplace] (location)
+    - make it in front of [Laplace](location)
     - building [Montgomerie](location)
-    - building [Laplace] (location) 
-     
+    - [Laplace](location) building 
+    - [Copernic](location) is more convenient to me
+
+
 # - intent: choose_location
 #   examples: |
 #     - what about Chappe
