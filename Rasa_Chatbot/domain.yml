@@ -11,6 +11,8 @@ intents:
     use_entities: true
 - choose_location:
     use_entities: true
+- change_time:
+    use_entities: true
 - change_location:
     use_entities: true
 - goodbye:
@@ -34,7 +36,7 @@ entities:
 slots: {}
 responses:
   utter_greet:
-  - text: Hello Hager, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
+  - text: Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
   utter_ask_for_time:
   - text: Does 10am in front of building Copernic suit you?
   utter_change_location:
@@ -42,7 +44,7 @@ responses:
   utter_confirmed:
   - text: Great, your delivry time and location are confirmed.
   utter_not_confirmed:
-  - text: okay,I will pick another time and come back to you.
+  - text: okay, let me know what would suit you then.
   utter_parcel_info:
   - text: Sorry, I don't have any information about the parcel.
   utter_cheer_up:
