@@ -18,9 +18,9 @@ Rasa has two main components:
 
 3. credentials.yml: This file is used to store credentials for connecting to external services such as Facebook Messenger, Slack, etc
 
-4. data/nlu.md: In this file, we define our intents (what the user could ask the bot to do? ).  These intents are then used in training the NLU model.
+4. data/nlu.yml: In this file, we define our intents (what the user could ask the bot to do? ).  These intents are then used in training the NLU model.
 
-5. data/stories.md: Stories are the sample conversation between a user and bot in the form of intents, responses and actions. Rasa stories are a form of training data used to train the Rasa’s dialogue management models.
+5. data/stories.yml: Stories are the sample conversation between a user and bot in the form of intents, responses and actions. Rasa stories are a form of training data used to train the Rasa’s dialogue management models.
 
 6. domain.yml: This file lists the different intent (the things which you expect from the user) with bot’s responses and actions which it can perform.
 
