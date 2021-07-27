@@ -10,9 +10,9 @@ from bof.fuzz import Process
 p = Process()
 
 locations = {'Chappe':[], 'Curie':['E', 'D', 'B', 'C'],'Shannon':[], 
-             'Pascal':[], 'Laplace':['East','West'],'Torricelli':[], 
-             'Ritchie':[], 'Copernic':['G','H', 'EBC'], 'Bourseul':[],
-             'Galilee':[], 'Montgomerie':[], 'Huygens':[], 'Newton':['F','B'] }
+              'Pascal':[], 'Laplace':['East','West'],'Torricelli':[], 
+              'Ritchie':[], 'Copernic':['G','H', 'EBC'], 'Bourseul':[],
+              'Galilee':[], 'Montgomerie':[], 'Huygens':[], 'Newton':['F','B'] }
 
 # e=p.extractOne("I would prefer the Curie", [*locations],score_cutoff=1)
 
@@ -26,8 +26,14 @@ Building = 'Curie'
 
 if Building in locations:   #to check if the building exists
   print ("Key exists")
-  print(locations.get(Building))
-  print(len(locations.get(Building)))
+  
+  print(locations.get(Building)) # get the entrances of this Building
+  
+  for x in locations.get(Building):  # print the entrances of this Building
+      print(x)
+      
+  print(len(locations.get(Building))) #len of values in this key
+  
 else:
   print ("Key does not exist")
   
@@ -56,3 +62,10 @@ setdefault()-->	Returns the value of the specified key. If the key does not exis
 update()	--> Updates the dictionary with the specified key-value pairs
 values()	--> Returns a list of all the values in the dictionary
 '''
+
+from datetime import datetime
+
+m2 = '1:00 am'
+in_time = datetime.strptime(m2, "%I:%M %p")
+out_time = datetime.strftime(in_time, "%H:%M")
+print(out_time)

@@ -51,10 +51,44 @@ nlu:
     - don't like that
     - no way
     - not really
-    - it doesn't work for me
-    - no it doesn't
+    - it does'nt work for me
+    - no it does'nt
+    - pick another time
     
-
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+    
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+    
 - intent: bot_challenge
   examples: |
     - are you a bot?
@@ -66,17 +100,12 @@ nlu:
 - intent: parcel_info
   examples: |
     - what is the parcel like?
-    - what does it contain?
-    - who sent it?
-    - where does it come from?
+    - what it contains?
+    - who send it?
+    - where it comes from?
     - what parcel?
     - what info do you have on this parcel?
     
-- intent: change_time
-  examples: |
-    - pick another time
-    - no, I'm busy
-
 - intent: change_location
   examples: |
     - no this location doesn't suit me
@@ -87,21 +116,56 @@ nlu:
     - change this location
     - change the place
     
-- intent: choose_location
-  examples: |
-    - what about [Chappe](location)
-    - what about [Curie](location)
-    - make it in front of [Laplace](location)
-    - building [Montgomerie](location)
-    - [Laplace](location) building 
-    - [Copernic](location) is more convenient to me
-
-
-# - intent: choose_location
+# - intent: change_time
 #   examples: |
-#     - what about Chappe
-#     - what about Curie
-#     - make it in front of Laplace
-#     - building Montgomerie
-#     - Laplace building
-     
+#     - pick another time
+#     - no, I'm busy
+    
+- intent: Location
+  examples: |
+    - [chappe](location)
+    - [curie](location)
+    - [laplace](location)
+    - [newton](location)
+    - [montgomerie](location)
+    - [copernic](location)
+    - [bourseul](location)
+    - [huygens](location)
+    - [ritchie](location)
+    - [torricelli](location)
+    
+- intent: Time
+  examples: |
+    - what about [4 pm](time)
+    - what about [3 am](time)
+    - make it [2 am](time)
+    - [6 am](time)
+    - [5 pm](time)
+    - [7 am](time)
+    - [9 am](time)
+    - [10 am](time)
+    - [5 pm](time)
+
+    
+- intent: out_of_scope
+  examples: |
+    - that's not what I want to do
+    - wait stop
+    - you're no help
+    - this is no help at all
+    - how old are you
+    - I want to order a pizza
+    - tell me the weather
+    - this isn't working
+    - I already told you that
+    - don't like that
+    - I don't want to tell you that
+    - none of your business
+    - that's not right
+    - stop asking
+    - nevermind
+    - I want to do something else
+    - I changed my mind
+    - I want to order food
+    - What is 2 + 2?
+    - Who's the US President?

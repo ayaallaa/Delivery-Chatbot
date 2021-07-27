@@ -1,64 +1,122 @@
 version: '2.0'
-config:
-  store_entities_as_slots: true
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  
 intents:
-- affirm:
-    use_entities: true
-- greet:
-    use_entities: true
-- choose_location:
-    use_entities: true
-- change_time:
-    use_entities: true
-- change_location:
-    use_entities: true
-- goodbye:
-    use_entities: true
-- deny:
-    use_entities: true
-- mood_great:
-    use_entities: true
-- mood_unhappy:
-    use_entities: true
-- bot_challenge:
-    use_entities: true
-- confirmd:
-    use_entities: true
-- not_confimed:
-    use_entities: true
-- parcel_info:
-    use_entities: true
+- affirm
+- greet
+- Location:
+   use_entities:
+     - location
+- Time:
+   use_entities:
+     - time
+- change_location
+- goodbye
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- confirmd
+- not_confimed
+- parcel_info
+- out_of_scope
+
 entities:
+- time
 - location
-slots: {}
+
+slots:
+  # confirm_time:
+  #   type: bool
+  #   influence_conversation: true
+  time:
+    type: text
+  location:
+    type: text
+
+    
 responses:
+  
+  utter_ask_confirm_time:
+  - text: "Does 10 am suits you?"
+  
   utter_greet:
-  - text: Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
-  utter_ask_for_time:
-  - text: Does 10am in front of building Copernic suit you?
+  - text: "Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel. \nDo you want to start?"
+ 
+  utter_ask_time:
+  - text: What time would you like to receive it?
+  
+  utter_ask_location:
+  - text: Please choose a Building
+    # buttons:
+    #   - title: "Curie"
+    #   - payload: "/Location/{location}"
+    #   - title: "Chappe"
+    #   - payload: "/Location/{location}"
+      
   utter_change_location:
-  - text: Please choose a location
+  - text: Please choose building.
+    
+  
+  utter_out_of_scope:
+  - text: Sorry, I didn't get what you said. Please rephrase what you said.
+ 
   utter_confirmed:
   - text: Great, your delivry time and location are confirmed.
+  
   utter_not_confirmed:
   - text: okay, let me know what would suit you then.
+  
   utter_parcel_info:
   - text: Sorry, I don't have any information about the parcel.
+  
+  utter_default:
+  - text: Sorry, I didn't understant. Please try again...
+  
+  utter_details_thanks:
+  - text: "Great, your delivry time and location are confirmed. \nTime: {Time} \nLocation: {Location} \nSee you!"
+  
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: 'Here is something to cheer you up:'
+  
   utter_did_that_help:
   - text: Did that help you?
+  
   utter_happy:
   - text: Great, carry on!
+  
   utter_goodbye:
   - text: Bye
+  
   utter_iamabot:
-  - text: I am a bot, powered by Rasa.
+  - text: I am your delivery bot, powered by Rasa.
+  
+  utter_custom:
+  - text: Sorry, I didn't get that. Please try again...
+  
 actions:
-- action_choose_location
-forms: {}
-e2e_actions: []
+  - action_submit
+  - validate_user_details_form
+  - action_custom_fallback
+  - utter_custom
+
+forms:
+   user_details_form:
+    required_slots:
+     # confirm_time:
+     #   - type: from_intent
+     #     value: True
+     #     intent: affirm
+     time:
+       - type: from_entity
+         entity: time
+     location:
+       - type: from_entity
+         entity: location
+  
+
+
+session_config:
+  session_expiration_time: 60 # value in minutes, 0 means infinitely long
+  carry_over_slots_to_new_session: true # set to false to forget slots between sessions
+
