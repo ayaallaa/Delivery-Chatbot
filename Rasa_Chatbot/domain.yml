@@ -23,14 +23,17 @@ intents:
 entities:
 - time
 - location
+- entrance
 
 slots:
-  # confirm_time:
-  #   type: bool
-  #   influence_conversation: true
+  confirm_time:
+     type: bool
+     influence_conversation: true
   time:
     type: text
   location:
+    type: text
+  entrance:
     type: text
 
     
@@ -43,16 +46,21 @@ responses:
   - text: "Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel. \nDo you want to start?"
  
   utter_ask_time:
-  - text: What time would you like to receive it?
+  - text: Okay, When would you like to receive it?
   
   utter_ask_location:
-  - text: Please choose a Building
-    # buttons:
-    #   - title: "Curie"
-    #   - payload: "/Location/{location}"
-    #   - title: "Chappe"
-    #   - payload: "/Location/{location}"
+  - text: Please choose the building
+    buttons:
+        - payload: /Location/{"location":"Curie"}
+          title: "Curie"
+        
+        - payload: /Location/{"location":"Chappe"}
+          title: "Chappe"
       
+  utter_ask_entrance:
+  - text: Please Choose an entrance
+    
+       
   utter_change_location:
   - text: Please choose building.
     
@@ -73,7 +81,7 @@ responses:
   - text: Sorry, I didn't understant. Please try again...
   
   utter_details_thanks:
-  - text: "Great, your delivry time and location are confirmed. \nTime: {Time} \nLocation: {Location} \nSee you!"
+  - text: "Great, your delivry time and location are confirmed.\nConfirmed: {Confirmed} \nTime: {Time} \nLocation: {Location} \nEntrance: {Entrance}\nSee you!"
   
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
@@ -103,20 +111,23 @@ actions:
 forms:
    user_details_form:
     required_slots:
-     # confirm_time:
-     #   - type: from_intent
-     #     value: True
-     #     intent: affirm
+     confirm_time:
+        - intent: affirm
+          type: from_intent
+          value: True
+        - intent: deny
+          type: from_intent
+          value: False    
      time:
-       - type: from_entity
-         entity: time
+        - type: from_entity
+          entity: time
      location:
-       - type: from_entity
-         entity: location
-  
-
+        - type: from_entity
+          entity: location
+     entrance:
+        - type: from_entity
+          entity: Entrance
 
 session_config:
   session_expiration_time: 60 # value in minutes, 0 means infinitely long
   carry_over_slots_to_new_session: true # set to false to forget slots between sessions
-
