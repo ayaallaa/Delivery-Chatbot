@@ -146,6 +146,17 @@ nlu:
     - [10 am](time)
     - [5 pm](time)
 
+- intent: Entrance
+  examples: |
+    - [A](entrance)
+    - [E](entrance)
+    - [B](entrance)
+    - [e](entrance)
+    - [EBC](entrance)
+    - [D](entrance)
+    - [E](entrance)
+    - [H](entrance)
+    - [b](entrance)
     
 - intent: out_of_scope
   examples: |
