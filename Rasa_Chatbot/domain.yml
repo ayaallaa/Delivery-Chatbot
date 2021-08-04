@@ -3,12 +3,15 @@ version: '2.0'
 intents:
 - affirm
 - greet
-- Location:
-   use_entities:
-     - location
 - Time:
    use_entities:
      - time
+- Location:
+   use_entities:
+     - location
+- Entrance:
+   use_entities:
+     - entrance
 - change_location
 - goodbye
 - deny
