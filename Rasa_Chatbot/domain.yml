@@ -46,23 +46,70 @@ responses:
   - text: "Does 10 am suits you?"
   
   utter_greet:
-  - text: "Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel. \nDo you want to start?"
+  - text: "Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.\n\n Do you want to start?"
  
   utter_ask_time:
   - text: Okay, When would you like to receive it?
   
-  utter_ask_location:
-  - text: Please choose the building
+  utter_ask_location:   
+  - text: Please choose the building 
+    image: "https://raw.githubusercontent.com/ayaallaa/Delivery-Chatbot/main/map.jpeg" 
     buttons:
-        - payload: /Location/{"location":"Curie"}
-          title: "Curie"
-        
-        - payload: /Location/{"location":"Chappe"}
-          title: "Chappe"
-      
-  utter_ask_entrance:
-  - text: Please Choose an entrance
-    
+        - title: "Curie"
+          payload: /Location{{"location":"Curie"}}
+          type: 'postBack'
+          
+        - title: "Chappe"
+          payload: /Location{{"location":"Chappe"}}
+          type: 'postBack'
+          
+        - title: "Shannon"
+          payload: /Location{{"location":"Shannon"}}
+          type: 'postBack'
+          
+        - title: "Pascal"
+          payload: /Location{{"location":"Pascal"}}
+          type: 'postBack'
+          
+        - title: "Laplace"
+          payload: /Location{{"location":"Laplace"}}
+          type: 'postBack'
+         
+        - title: "Torricelli"
+          payload: /Location{{"location":"torricelli"}}
+          type: 'postBack'
+          
+        - title: "Ritchie"
+          payload: /Location{{"location":"Ritchie"}}
+          type: 'postBack'
+          
+        - title: "Copernic"
+          payload: /Location{{"location":"Copernic"}}
+          type: 'postBack'
+                    
+        - title: "Bourseul"
+          payload: /Location{{"location":"Bourseul"}}
+          type: 'postBack'
+          
+        - title: "Galilee"
+          payload: /Location{{"location":"Galilee"}}
+          type: 'postBack'
+          
+        - title: "Montgomerie"
+          payload: /Location{{"location":"Montgomerie"}}
+          type: 'postBack'
+          
+        - title: "Huygens"
+          payload: /Location{{"location":"Huygens"}}
+          type: 'postBack'
+          
+        - title: "Newton"
+          payload: /Location{{"location":"Newton"}}
+          type: 'postBack'
+                          
+   utter_ask_entrance:
+   - text: Please Choose an entrance
+
        
   utter_change_location:
   - text: Please choose building.
@@ -84,7 +131,7 @@ responses:
   - text: Sorry, I didn't understant. Please try again...
   
   utter_details_thanks:
-  - text: "Great, your delivry time and location are confirmed.\nConfirmed: {Confirmed} \nTime: {Time} \nLocation: {Location} \nEntrance: {Entrance}\nSee you!"
+  - text: "Great, your delivry time and location are confirmed.\n\nTime: {Time} \n \nLocation: {Location} building, {Entrance} entrance\n\nSee you!"
   
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
@@ -110,6 +157,7 @@ actions:
   - validate_user_details_form
   - action_custom_fallback
   - utter_custom
+  # - utter_ask_entrance
 
 forms:
    user_details_form:
