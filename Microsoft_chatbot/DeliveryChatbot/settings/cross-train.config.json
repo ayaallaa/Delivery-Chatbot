@@ -1,0 +1,21 @@
+{
+  "Delivery_Chatbot.en-us": {
+    "rootDialog": true,
+    "triggers": {
+      "": [
+        "Ready.en-us"
+      ],
+      "affirm": [
+        "Choose_time.en-us"
+      ],
+      "deny": "",
+      "parcel_info": "",
+      "Greet": [
+        "Ready.en-us"
+      ],
+      "Reset": [
+        "Ready.en-us"
+      ]
+    }
+  }
+}
