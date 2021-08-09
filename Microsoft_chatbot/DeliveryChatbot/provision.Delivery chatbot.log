@@ -1,0 +1,13 @@
+{
+  "profileName": "delivery chatbot",
+  "jobId": "c9b80aeb-c8b5-43ab-a765-d218d6157eb6",
+  "projectId": "9964.23101599182",
+  "time": "2021-08-06T09:59:21.160Z",
+  "log": [
+    "Creating Azure resources...",
+    "Checking the Existence of the Resource Group ...",
+    "Use the Resource Group: chatbot at francecentral",
+    "Deploying QnA Resource ...",
+    "Provisioning completed successfully!"
+  ]
+}

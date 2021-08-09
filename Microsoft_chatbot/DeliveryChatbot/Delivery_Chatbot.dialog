@@ -1,0 +1,184 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "Delivery_Chatbot",
+    "description": "",
+    "id": "4pM5gc"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "518944",
+            "name": "Loop: for each item"
+          },
+          "itemsProperty": "turn.Activity.membersAdded",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "641773",
+                "name": "Branch: if/else"
+              },
+              "condition": "string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "IE3Hr8"
+                  },
+                  "activity": "${SendActivity_IE3Hr8()}"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "WX8caG"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "Ready"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "FOxcnx"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "IQMEuO"
+          },
+          "activity": "${SendActivity_DidNotUnderstand()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "4iHAQm",
+        "name": "affirm"
+      },
+      "intent": "affirm",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "LCheca"
+          },
+          "activityProcessed": true,
+          "dialog": "Choose_time"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "7owR7s",
+        "name": "deny"
+      },
+      "intent": "deny",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Lzs9WS"
+          },
+          "activity": "${SendActivity_Lzs9WS()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Z9ioX6",
+        "name": "parcel_info"
+      },
+      "intent": "parcel_info",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "upYBqj"
+          },
+          "activity": "${SendActivity_upYBqj()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "ScVFM6",
+        "name": "Greet"
+      },
+      "intent": "Greet",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Rq3VhG"
+          },
+          "activity": "${SendActivity_Rq3VhG()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "vWwuSD"
+          },
+          "activityProcessed": true,
+          "dialog": "Ready"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "OpbFWw",
+        "name": "Reset"
+      },
+      "intent": "Reset",
+      "actions": [
+        {
+          "$kind": "Microsoft.DeleteProperties",
+          "$designer": {
+            "id": "06d2yI"
+          },
+          "properties": [
+            "user.confirmedTime",
+            "user.location",
+            "user.options",
+            "user.time",
+            "user.AvalibleTime",
+            "user.entrance",
+            "user.date",
+            "user.email"
+          ]
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "lPWwtO"
+          },
+          "activityProcessed": true,
+          "dialog": "Ready"
+        }
+      ]
+    }
+  ],
+  "generator": "Delivery_Chatbot.lg",
+  "id": "Delivery_Chatbot",
+  "recognizer": "Delivery_Chatbot.lu.qna"
+}

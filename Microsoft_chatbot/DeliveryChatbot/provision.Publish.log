@@ -1,0 +1,28 @@
+{
+  "profileName": "Publish",
+  "jobId": "44a1352d-e85b-4dc8-9254-0543ca6da2bb",
+  "projectId": "9964.23101599182",
+  "time": "2021-08-06T11:45:00.478Z",
+  "log": [
+    "Creating Azure resources...",
+    "Checking the Existence of the Resource Group ...",
+    "Use the Resource Group: ParcelDeliveryChatbot at francecentral",
+    "> Creating App Registration ...",
+    "Start to add password for App, Id : f8103dc1-f4fb-4581-8b9d-db6b225f10eb",
+    "> Create App Registration Success! ID: f8103dc1-f4fb-4581-8b9d-db6b225f10eb",
+    "Deploying Web App Resource ...",
+    "Deploying Bot Resource ...",
+    "Deploying Luis Authoring Resource ...",
+    "Deploying Luis Resource ...",
+    "Deploying Cosmos DB Resource ...",
+    "Deploying Application Insights Resource ...",
+    "> Linking Application Insights settings to Bot Service ...",
+    "> AppInsights AppId: f45b435c-7fa6-42b8-b4a1-d7b5f0ed5add ...",
+    "> AppInsights InstrumentationKey: b25dd8ef-f78d-4531-8fee-c4697900621e ...",
+    "> AppInsights ApiKey: dwycgk75wty0y17n0cofhgdrnov3wyx5p61spazc ...",
+    "> Linking Application Insights settings to Bot Service Success!",
+    "Deploying Blob Storage Resource ...",
+    "Deploying QnA Resource ...",
+    "Provisioning completed successfully!"
+  ]
+}
