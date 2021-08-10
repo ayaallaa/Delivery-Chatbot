@@ -12,7 +12,7 @@ Composer can help guide you through getting started building your bot.
   - nodejs
   - .NET Core SDK
  
- the great resource to gett start is the **[guided tutorial](https://docs.microsoft.com/en-us/composer/tutorial/tutorial-introduction)** in Microsoft Bot framework Composer documentation.
+ the great resource to get start is the **[guided tutorial](https://docs.microsoft.com/en-us/composer/tutorial/tutorial-introduction)** in Microsoft Bot framework Composer documentation.
 ### Create Dialogs
 
 The bot is built from a series of components called dialogs. Each dialog encapsulates some bot functionality, such as sending a response, prompting a user for text, making an HTTP request, or maybe all of these.
