@@ -1,27 +1,38 @@
-# Welcome to your new bot
+# Microsoft Delivery Chatbot
 
 This bot project was created using the Core Bot with Azure Language Understanding template, and contains support for a base set of conversational flows.
 
-## Next steps
 
-### Start building your bot
+## Start building the bot
 
-Composer can help guide you through getting started building your bot. From your bot settings page (the wrench icon on the left navigation rail), click on the rocket-ship icon on the top right for some quick navigation links.
+Composer can help guide you through getting started building your bot.
+1. Download Composer
+2. Prerequisites
+  Before you get started, you need to install
+  - nodejs
+  - .NET Core SDK
+ 
+ the great resource to gett start is the **[guided tutorial](https://docs.microsoft.com/en-us/composer/tutorial/tutorial-introduction)** in Microsoft Bot framework Composer documentation.
+### Create Dialogs
 
-Another great resource if you're just getting started is the **[guided tutorial](https://docs.microsoft.com/en-us/composer/tutorial/tutorial-introduction)** in our documentation.
+The bot is built from a series of components called dialogs. Each dialog encapsulates some bot functionality, such as sending a response, prompting a user for text, making an HTTP request, or maybe all of these.
 
-### Connect with your users
+### create Triggers
 
-Your bot comes pre-configured to connect to our Web Chat and DirectLine channels, but there are many more places you can connect your bot to - including Microsoft Teams, Telephony, DirectLine Speech, Slack, Facebook, Outlook and more. Check out all of the places you can connect to on the bot settings page.
+In Bot Framework Composer, each dialog includes one or more event handlers called triggers. Each trigger contains one or more actions. Actions are the instructions that the bot will execute when the dialog receives any event that it has a trigger defined to handle. Once a given event is handled by a trigger.
 
-### Publish your bot to Azure from Composer
+### Add language understanding data 
 
-Composer can help you provision the Azure resources necessary for your bot, and publish your bot to them. To get started, create a publishing profile from your bot settings page in Composer (the wrench icon on the left navigation rail). Make sure you only provision the optional Azure resources you need!
+Language understanding (LU) is used by a bot to understand language naturally and contextually to determine what to do next in a conversation flow. In Bot Framework Composer, the process is achieved through setting up recognizers and providing training data in the dialog so that the intents and entities contained in the message can be captured. These values will then be passed on to triggers which define how the bot responds using the appropriate actions.
 
-### Extend your bot with packages
 
-From Package Manager in Composer you can find useful packages to help add additional pre-built functionality you can add to your bot - everything from simple dialogs & custom actions for working with specific scenarios to custom adapters for connecting your bot to users on clients like Facebook or Slack.
+## Publish your bot to Azure from Composer
 
-### Extend your bot with code
+Composer can help you provision the Azure resources necessary for your bot, and publish your bot to them. To get started, create a publishing profile from your bot settings page in Composer . Make sure you only provision the optional Azure resources you need!
+How to publish the bot : Publish a bot to Azure(https://docs.microsoft.com/en-us/composer/how-to-publish-bot?tabs=v2x)
 
-You can also extend your bot with code - simply open up the folder that was generated for you in the location you chose during the creation process with your favorite IDE (like Visual Studio). You can do things like create custom actions that can be used during dialog flows, create custom middleware to pre-process (or post-process) messages, and more. See [our documentation](https://aka.ms/bf-extend-with-code) for more information.
+## Connect with your users
+
+the bot comes pre-configured to connect to  Web Chat and DirectLine channels, but there are many more places can connect the bot to - including Microsoft Teams, Telephony,  Facebook, Outlook and more.
+How to connect the bot to microsoft: Connect a bot to Microsoft Teams(https://docs.microsoft.com/en-us/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0)
+
