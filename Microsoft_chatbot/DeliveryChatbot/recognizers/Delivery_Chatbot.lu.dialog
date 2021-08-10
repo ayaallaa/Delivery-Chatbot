@@ -1,8 +1,0 @@
-{
-  "$kind": "Microsoft.MultiLanguageRecognizer",
-  "id": "LUIS_Delivery_Chatbot",
-  "recognizers": {
-    "en-us": "Delivery_Chatbot.en-us.lu",
-    "": "Delivery_Chatbot.en-us.lu"
-  }
-}
