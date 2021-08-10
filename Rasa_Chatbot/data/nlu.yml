@@ -34,6 +34,14 @@ nlu:
   examples: |
     - yes
     - y
+    - yap
+    - why not!
+    - yes it does
+    - ok great
+    - fine
+    - yeah, great
+    - ok great
+    - pretty good
     - indeed
     - of course
     - that sounds good
@@ -41,11 +49,16 @@ nlu:
     - okay
     - ok
     - sure
+    - so good
+    - so perfect
+    - good
+    - perfect
     
 - intent: deny
   examples: |
     - no
     - n
+    - nop
     - never
     - I don't think so
     - don't like that
@@ -53,7 +66,7 @@ nlu:
     - not really
     - it does'nt work for me
     - no it does'nt
-    - pick another time
+    - pick another one
     
 - intent: mood_great
   examples: |
@@ -120,7 +133,15 @@ nlu:
 #   examples: |
 #     - pick another time
 #     - no, I'm busy
-    
+
+- intent: Date
+  examples: |
+    - [tommorow](date)
+    - [the day after tommorow](date)
+    - [in the next day](date)
+    - [next week](date)
+    - make it [today](date)
+         
 - intent: Location
   examples: |
     - [chappe](location)
@@ -148,7 +169,7 @@ nlu:
 
 - intent: Entrance
   examples: |
-    - [A](entrance)
+    - let it be [A](entrance)
     - [E](entrance)
     - [B](entrance)
     - [e](entrance)
@@ -157,6 +178,8 @@ nlu:
     - [E](entrance)
     - [H](entrance)
     - [b](entrance)
+    - make it [west](entrance)
+    - what about [east](entrance)
     
 - intent: out_of_scope
   examples: |
