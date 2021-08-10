@@ -29,10 +29,12 @@ Language understanding (LU) is used by a bot to understand language naturally an
 ## Publish your bot to Azure from Composer
 
 Composer can help you provision the Azure resources necessary for your bot, and publish your bot to them. To get started, create a publishing profile from your bot settings page in Composer . Make sure you only provision the optional Azure resources you need!
-How to publish the bot : Publish a bot to Azure(https://docs.microsoft.com/en-us/composer/how-to-publish-bot?tabs=v2x)
+
+How to publish the bot :  **[Publish a bot to Azure](https://docs.microsoft.com/en-us/composer/how-to-publish-bot?tabs=v2x)
 
 ## Connect with your users
 
-the bot comes pre-configured to connect to  Web Chat and DirectLine channels, but there are many more places can connect the bot to - including Microsoft Teams, Telephony,  Facebook, Outlook and more.
-How to connect the bot to microsoft: Connect a bot to Microsoft Teams(https://docs.microsoft.com/en-us/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0)
+-the bot comes pre-configured to connect to  Web Chat and DirectLine channels, but there are many more places can connect the bot to - including Microsoft Teams, Telephony,  Facebook, Outlook and more.
+
+-How to connect the bot to microsoft:  **[Connect a bot to Microsoft Teams](https://docs.microsoft.com/en-us/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0)
 
