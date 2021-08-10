@@ -25,6 +25,7 @@ intents:
 
 entities:
 - time
+- date
 - location
 - entrance
 
@@ -33,6 +34,8 @@ slots:
      type: bool
      influence_conversation: true
   time:
+    type: text
+  date:
     type: text
   location:
     type: text
@@ -51,6 +54,17 @@ responses:
   utter_ask_time:
   - text: Okay, When would you like to receive it?
   
+  utter_ask_date:
+   - text: Please choose the date
+     buttons:
+         - title: "Today"
+           payload: /Date{{"date":"Today"}}
+           type: 'postBack'
+            
+         - title: "Another day"
+           payload: /Date{{"date":"Another day"}}
+           type: 'postBack'
+   
   utter_ask_location:   
   - text: Please choose the building 
     image: "https://raw.githubusercontent.com/ayaallaa/Delivery-Chatbot/main/map.jpeg" 
@@ -107,8 +121,77 @@ responses:
           payload: /Location{{"location":"Newton"}}
           type: 'postBack'
                           
-   utter_ask_entrance:
-   - text: Please Choose an entrance
+  utter_ask_entrance:
+  # - text: Please Choose an entrance
+    - condition:
+        - type: slot
+          name: location
+          value: Curie
+      text: Please Choose an entrance
+      buttons:
+      - title: "E"
+        payload: /Entrance{{"entrance":"E"}}
+        type: 'postBack'
+          
+      - title: "B"
+        payload: /Entrance{{"entrance":"B"}}
+        type: 'postBack'
+          
+      - title: "C"
+        payload: /Entrance{{"entrance":"C"}}
+        type: 'postBack'
+          
+      - title: "D"
+        payload: /Entrance{{"entrance":"D"}}
+        type: 'postBack'
+        
+    - condition:
+        - type: slot
+          name: location
+          value: Laplace
+      text: Please Choose an entrance
+      buttons:
+      - title: "East"
+        payload: /Entrance{{"entrance":"East"}}
+        type: 'postBack'
+          
+      - title: "West"
+        payload: /Entrance{{"entrance":"West"}}
+        type: 'postBack'
+          
+    - condition:
+        - type: slot
+          name: location
+          value: Copernic
+      text: Please Choose an entrance
+      buttons:
+      - title: "G"
+        payload: /Entrance{{"entrance":"G"}}
+        type: 'postBack'
+          
+      - title: "H"
+        payload: /Entrance{{"entrance":"H"}}
+        type: 'postBack'
+        
+      - title: "EBC"
+        payload: /Entrance{{"entrance":"EBC"}}
+        type: 'postBack'
+
+    - condition:
+        - type: slot
+          name: location
+          value: Newton
+      text: Please Choose an entrance
+      buttons:
+      - title: "B"
+        payload: /Entrance{{"entrance":"B"}}
+        type: 'postBack'
+          
+      - title: "F"
+        payload: /Entrance{{"entrance":"F"}}
+        type: 'postBack'
+        
+    - text: Please choose entrance
 
        
   utter_change_location:
@@ -131,7 +214,13 @@ responses:
   - text: Sorry, I didn't understant. Please try again...
   
   utter_details_thanks:
-  - text: "Great, your delivry time and location are confirmed.\n\nTime: {Time} \n \nLocation: {Location} building, {Entrance} entrance\n\nSee you!"
+    - condition:
+        - type: slot
+          name: entrance
+          value: no
+      text: "Great, your delivry time and location are confirmed.\n\n Date:{Date} \n \nTime: {Time} \n \nLocation: {Location} building, main entrance\n\nSee you!"
+      
+    - text: "Great, your delivry time and location are confirmed.\n\n Date:{Date} \n \nTime: {Time} \n \nLocation: {Location} building, {Entrance} entrance\n\nSee you!"
   
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
@@ -169,6 +258,9 @@ forms:
         - intent: deny
           type: from_intent
           value: False    
+     date:
+        - type: from_entity
+          entity: date
      time:
         - type: from_entity
           entity: time
