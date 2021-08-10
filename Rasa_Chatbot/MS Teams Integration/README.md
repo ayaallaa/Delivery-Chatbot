@@ -86,7 +86,7 @@ Now everything should be done it's time to stert our chatbot by starting
 
 * Apps --> app studio --> import an existing app.
 
-**_Note_**: use personal account if this is not working while using Nokia account it's not allowed
+**_Note_**: use personal account if this is not working while using Nokia account if it's not allowed
 
 * Import the DeliveryBot zip --> go to ``Bots``
 
