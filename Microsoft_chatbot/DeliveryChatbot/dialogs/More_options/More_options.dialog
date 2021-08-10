@@ -1,0 +1,166 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "drol4I",
+    "name": "More_options",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "XGlGOw"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "8nguEN"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_8nguEN()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "style": "suggestedAction",
+          "choices": [
+            "choose another slot time Today",
+            "choose another day",
+            "someone else receives my parcel"
+          ],
+          "property": "user.options"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "jBdKgM"
+          },
+          "condition": "=user.options",
+          "cases": [
+            {
+              "value": "==\"choose another slot time Today\"",
+              "actions": [
+                {
+                  "$kind": "Microsoft.DateTimeInput",
+                  "$designer": {
+                    "id": "hLnqxW"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "prompt": "${DateTimeInput_Prompt_hLnqxW()}",
+                  "property": "user.time"
+                },
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "sX4URu"
+                  },
+                  "property": "user.confirmedTime",
+                  "value": "=user.time[0].value"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "E8OK28"
+                  },
+                  "activity": "${SendActivity_E8OK28()}"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "IsJwFr"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "Location"
+                }
+              ]
+            },
+            {
+              "value": "==\"choose another day\"",
+              "actions": [
+                {
+                  "$kind": "Microsoft.DateTimeInput",
+                  "$designer": {
+                    "id": "z4bwOS"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "prompt": "${DateTimeInput_Prompt_z4bwOS()}",
+                  "property": "user.date"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "qVJwLu"
+                  },
+                  "activity": "${SendActivity_qVJwLu()}"
+                },
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "Bus8Pm"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "Ask_time"
+                }
+              ]
+            },
+            {
+              "value": "==\"someone else receives my parcel\"",
+              "actions": [
+                {
+                  "$kind": "Microsoft.TextInput",
+                  "$designer": {
+                    "id": "TOcA3F"
+                  },
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "prompt": "${TextInput_Prompt_TOcA3F()}",
+                  "property": "user.email",
+                  "validations": [],
+                  "invalidPrompt": "${TextInput_InvalidPrompt_TOcA3F()}"
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "t4REoy"
+                  },
+                  "activity": "${SendActivity_t4REoy()}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "More_options.lg",
+  "recognizer": "More_options.lu.qna",
+  "id": "More_options"
+}

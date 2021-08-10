@@ -1,0 +1,63 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "7UnNx2",
+    "name": "Ask_time",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "SdMYEA"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.DateTimeInput",
+          "$designer": {
+            "id": "6btOLt"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${DateTimeInput_Prompt_6btOLt()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.time"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "MWpVuE"
+          },
+          "property": "user.confirmedTime",
+          "value": "=user.time[0].value"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "sfffJM"
+          },
+          "activity": "${SendActivity_sfffJM()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "MozOoD"
+          },
+          "activityProcessed": true,
+          "dialog": "Location"
+        }
+      ]
+    }
+  ],
+  "generator": "Ask_time.lg",
+  "recognizer": "Ask_time.lu.qna",
+  "id": "Ask_time"
+}

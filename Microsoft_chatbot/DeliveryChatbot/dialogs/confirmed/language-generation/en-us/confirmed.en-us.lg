@@ -1,0 +1,14 @@
+[import](common.lg)
+
+# SendActivity_f6yYb4()
+[Activity
+    Text = ${SendActivity_f6yYb4_text()}
+]
+
+# SendActivity_MC9guE()
+[Activity
+    Text = Good bye ,, see you soon
+]
+
+# SendActivity_f6yYb4_text()
+- Great, your delivry time at ${user.confirmedTime} ${user.date[0].value}  and location on ${user.location} ${user.entrance} are confirmed.

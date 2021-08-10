@@ -1,0 +1,9 @@
+[import](common.lg)
+
+# SendActivity_IS5rXi()
+[Activity
+    Text = ${SendActivity_IS5rXi_text()}
+]
+
+# SendActivity_IS5rXi_text()
+- Are you ready to start the chat ?

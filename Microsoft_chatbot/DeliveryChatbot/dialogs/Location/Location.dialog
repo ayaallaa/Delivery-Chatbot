@@ -1,0 +1,261 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "HeosIA",
+    "name": "Location",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "DUYl4u"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "nClN1N"
+          },
+          "activity": "${SendActivity_nClN1N()}"
+        },
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "zFpI5c"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_zFpI5c()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "recognizerOptions": {
+            "recognizeOrdinals": true
+          },
+          "property": "user.location",
+          "choices": [
+            {
+              "value": "Chappe"
+            },
+            {
+              "value": "Curie"
+            },
+            {
+              "value": "Shannon"
+            },
+            {
+              "value": "Pascal"
+            },
+            {
+              "value": "Laplace"
+            },
+            {
+              "value": "Torricelli"
+            },
+            {
+              "value": "Ritchie"
+            },
+            {
+              "value": "Copernic"
+            },
+            {
+              "value": "Bourseul"
+            },
+            {
+              "value": "Galilee"
+            },
+            {
+              "value": "Montgomerie"
+            },
+            {
+              "value": "Huygens"
+            },
+            {
+              "value": "Newton"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "ITpgf8"
+          },
+          "condition": "=user.location",
+          "cases": [
+            {
+              "value": "== \"Curie\"",
+              "actions": [
+                {
+                  "$kind": "Microsoft.ChoiceInput",
+                  "$designer": {
+                    "id": "L3F4r1"
+                  },
+                  "defaultLocale": "en-us",
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "prompt": "${ChoiceInput_Prompt_L3F4r1()}",
+                  "choiceOptions": {
+                    "includeNumbers": true,
+                    "inlineOrMore": ", or "
+                  },
+                  "choices": [
+                    {
+                      "value": "E"
+                    },
+                    {
+                      "value": "D"
+                    },
+                    {
+                      "value": "B"
+                    },
+                    {
+                      "value": "C"
+                    }
+                  ],
+                  "property": "user.entrance"
+                }
+              ]
+            },
+            {
+              "value": "==\"Laplace\"",
+              "actions": [
+                {
+                  "$kind": "Microsoft.ChoiceInput",
+                  "$designer": {
+                    "id": "xHc7NE"
+                  },
+                  "defaultLocale": "en-us",
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "property": "user.entrance",
+                  "prompt": "${ChoiceInput_Prompt_xHc7NE()}",
+                  "choiceOptions": {
+                    "includeNumbers": true,
+                    "inlineOrMore": ", or "
+                  },
+                  "choices": [
+                    {
+                      "value": "East"
+                    },
+                    {
+                      "value": "West"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "value": "==\"Copernic\"",
+              "actions": [
+                {
+                  "$kind": "Microsoft.ChoiceInput",
+                  "$designer": {
+                    "id": "PLJUNw"
+                  },
+                  "defaultLocale": "en-us",
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "prompt": "${ChoiceInput_Prompt_PLJUNw()}",
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "choiceOptions": {
+                    "includeNumbers": true,
+                    "inlineOrMore": ", or "
+                  },
+                  "choices": [
+                    {
+                      "value": "G"
+                    },
+                    {
+                      "value": "H"
+                    },
+                    {
+                      "value": "EBC"
+                    }
+                  ],
+                  "property": "user.entrance"
+                }
+              ]
+            },
+            {
+              "value": "==\"Newton\"",
+              "actions": [
+                {
+                  "$kind": "Microsoft.ChoiceInput",
+                  "$designer": {
+                    "id": "PLJUNw"
+                  },
+                  "defaultLocale": "en-us",
+                  "disabled": false,
+                  "maxTurnCount": 3,
+                  "alwaysPrompt": false,
+                  "allowInterruptions": false,
+                  "prompt": "${ChoiceInput_Prompt_PLJUNw()}",
+                  "unrecognizedPrompt": "",
+                  "invalidPrompt": "",
+                  "defaultValueResponse": "",
+                  "choiceOptions": {
+                    "includeNumbers": true
+                  },
+                  "choices": [
+                    {
+                      "value": "F"
+                    },
+                    {
+                      "value": "B"
+                    }
+                  ],
+                  "property": "user.entrance"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "RwWkM3"
+          },
+          "activity": "${SendActivity_RwWkM3()}"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "LSdW6Q"
+          },
+          "activityProcessed": true,
+          "dialog": "confirmed"
+        }
+      ]
+    }
+  ],
+  "generator": "Location.lg",
+  "recognizer": "Location.lu.qna",
+  "id": "Location"
+}

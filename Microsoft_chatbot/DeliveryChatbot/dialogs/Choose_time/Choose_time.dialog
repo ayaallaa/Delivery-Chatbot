@@ -1,0 +1,98 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "eaTzW4",
+    "name": "Choose_time",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "BGETmc"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "JREfEd"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ChoiceInput_Prompt_JREfEd()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "choices": [
+            "10 AM",
+            "12 PM",
+            "3 PM",
+            "other"
+          ],
+          "property": "user.AvalibleTime",
+          "recognizerOptions": {
+            "recognizeOrdinals": true
+          }
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "19WgKi"
+          },
+          "condition": "=user.AvalibleTime==\"other\"",
+          "actions": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "bhF5St"
+              },
+              "activityProcessed": true,
+              "dialog": "More_options"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "lCUIdI"
+              },
+              "property": "user.confirmedTime",
+              "value": "=user.AvalibleTime"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "HYyWWU"
+              },
+              "activity": "${SendActivity_HYyWWU()}"
+            },
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "tm66Y9"
+              },
+              "activityProcessed": true,
+              "dialog": "Location"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "Choose_time.lg",
+  "recognizer": "Choose_time.lu.qna",
+  "id": "Choose_time"
+}

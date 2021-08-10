@@ -1,0 +1,11 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_JREfEd()
+[Activity
+    Text = what is the time suit you?
+]
+
+# SendActivity_HYyWWU()
+[Activity
+    Text = ${user.confirmedTime}  is  saved
+]

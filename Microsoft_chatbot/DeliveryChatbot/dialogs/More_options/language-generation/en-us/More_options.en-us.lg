@@ -1,0 +1,46 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_8nguEN()
+[Activity
+    Text = what do you need ?
+]
+
+# DateTimeInput_Prompt_hLnqxW()
+[Activity
+    Text = what is the time suit you?
+]
+
+# TextInput_Prompt_TOcA3F()
+[Activity
+    Text = please enter the email address  of the recipient’s
+]
+
+# SendActivity_t4REoy()
+[Activity
+    Text = i will connect with ${user.email} soon
+]
+
+# SendActivity_E8OK28()
+[Activity
+    Text = ${user.confirmedTime}  is  saved
+]
+
+# TextInput_InvalidPrompt_TOcA3F()
+[Activity
+    Text = invalid mail
+]
+
+# TemplateName()
+-TemplateValue
+# DateTimeInput_Prompt_z4bwOS()
+[Activity
+    Text = chosse the date of the day 
+]
+
+# SendActivity_qVJwLu()
+[Activity
+    Text = ${SendActivity_qVJwLu_text()}
+]
+
+# SendActivity_qVJwLu_text()
+- you choose ${user.date[0].value}

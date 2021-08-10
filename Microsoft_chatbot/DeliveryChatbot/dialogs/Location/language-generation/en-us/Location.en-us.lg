@@ -1,0 +1,34 @@
+[import](common.lg)
+
+# ChoiceInput_Prompt_zFpI5c()
+[Activity
+    Text = Please choose a location
+]
+
+# SendActivity_RwWkM3()
+[Activity
+    Text = your delivry location is ${user.location} ${user.entrance}
+]
+
+# ChoiceInput_Prompt_L3F4r1()
+[Activity
+    Text =  please choose entrance
+]
+
+# ChoiceInput_Prompt_xHc7NE()
+[Activity
+    Text = please choose entrance
+]
+
+# ChoiceInput_Prompt_PLJxzo()
+[Activity
+    Text = please choose entrance
+]
+
+# ChoiceInput_Prompt_PLJUNw()
+[Activity
+    Text = please choose entrance
+]
+
+# SendActivity_nClN1N()
+- ${HeroCard()}
