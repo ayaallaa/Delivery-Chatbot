@@ -21,13 +21,16 @@ https://www.youtube.com/watch?v=JiACbrwBQ1A&t=1223s
 5. Now, go to Bots and setup the endpoint for the rasa chatbot which is alive and ready to talk to. Here you will get the app_id and app_password(after generating), that you need to setup in the credentials.yml file of the rasa chatbot. After you will add the credentials you will have to rerun the rasa application to take the changes to effect.
 
 6. Here you have to setup the endpoint, and the endpoint should be the SSL certified, and it will be of this format,
+
    ``https://<domain-name>/webhooks/botframework/webhook ``
 
    - We will use **ngrok** as a local server [ngrok Docs](https://ngrok.com/docs).
 
      - to expose a web server on port 5005 of your local machine to the internet 
 
-       ``ngrok http 5005`` **_Note_**: 5005 is the same port number that ' Rasa ' server uses. 
+       `` ngrok http 5005 `` 
+
+       **_Note_**: 5005 is the same port number that ' Rasa ' server uses. 
       
        it will start like the folowing image:
 
@@ -43,7 +46,7 @@ https://www.youtube.com/watch?v=JiACbrwBQ1A&t=1223s
 
 9. Now Click on download to download the app.
 
-10. Once you have downloaded the app, now go to apps again and you will notice and option “Upload a customised app“, click on it and select “Upload for my org“. Now select the file that you just downloaded to install it.
+10. Once you have downloaded the app, now go to apps again and you will notice and option “Upload a custom app“, click on it and select “Upload for my org“. Now select the file that you just downloaded to install it.
 
 11. It will install the app and take you inside the app. So here you are, you have successfully setup the application successfully.
 
@@ -69,3 +72,19 @@ Now everything should be done it's time to stert our chatbot & Rasa server:
 `` rasa run --model models --enable-api --cors "*" ``
 
 **_Note_**: **ngrok** should be runing too.
+
+
+## To use the DeliveryBot App:
+
+* Open MS_Teams
+
+* Apps --> app studio --> import an existing app
+**_Note_**: use personal account if this is not working while using Nokia account it's not allowed
+
+* Import the DeliveryBot zip --> go to ``Bots``
+
+* Edit the endpoint address like in step 6 as in [Here](https://github.com/ayaallaa/Delivery-Chatbot/tree/main/Rasa_Chatbot/MS%20Teams%20Integration#start-the-chatbot) & make sure it's running & correct. 
+
+* Complete the same steps from 7 till the end.
+
+* Train Rasa chatbot & run it as in [Here](https://github.com/ayaallaa/Delivery-Chatbot/tree/main/Rasa_Chatbot/MS%20Teams%20Integration#start-the-chatbot)
