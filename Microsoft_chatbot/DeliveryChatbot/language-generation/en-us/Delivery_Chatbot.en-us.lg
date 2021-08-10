@@ -1,0 +1,37 @@
+[import](common.lg)
+
+# SendActivity_DidNotUnderstand()
+[Activity
+    Text = ${SendActivity_DidNotUnderstand_text()}
+]
+
+# SendActivity_DidNotUnderstand_text()
+- Sorry, I didn't get that
+- I'm not sure I understand. Can you please try again?
+- Hmm, I don't understand. Can you try to ask me in a different way. 
+- I didn't get that. Would you mind rephrasing and try it again.
+
+# SendActivity_IE3Hr8()
+[Activity
+    Text = Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
+]
+
+# SendActivity_upYBqj()
+[Activity
+    Text = Sorry, I don't have any information about the parcel
+]
+
+# SendActivity_Lzs9WS()
+[Activity
+    Text = ${SendActivity_Lzs9WS_text()}
+]
+
+# SendActivity_Lzs9WS_text()
+- okay, I wait you to start anytime 
+# SendActivity_Rq3VhG()
+[Activity
+    Text = ${SendActivity_Rq3VhG_text()}
+]
+
+# SendActivity_Rq3VhG_text()
+- Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
