@@ -31,7 +31,7 @@ https://www.youtube.com/watch?v=JiACbrwBQ1A&t=1223s
       
        it will start like the folowing image:
 
-![App Details](https://github.com/ayaallaa/Delivery-Chatbot/blob/main/Rasa_Chatbot/images/ngrok.png?raw=true)
+![ngrok](https://github.com/ayaallaa/Delivery-Chatbot/blob/main/Rasa_Chatbot/images/ngrok.jpeg?raw=true)
        
        we will take the https url and put it in the endpoint adress like the following: 
        
