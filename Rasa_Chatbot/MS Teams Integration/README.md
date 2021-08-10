@@ -67,9 +67,15 @@ botframework:
 
 ## Start the chatbot:
 
-Now everything should be done it's time to stert our chatbot & Rasa server:
+Now everything should be done it's time to stert our chatbot by starting 
 
-`` rasa run --model models --enable-api --cors "*" ``
+* Rasa server :
+
+    `` rasa run --model models --enable-api --cors "*" ``
+
+* Actions server in another terminal: 
+    
+    `` rasa run actions ``
 
 **_Note_**: **ngrok** should be runing too.
 
@@ -83,8 +89,12 @@ Now everything should be done it's time to stert our chatbot & Rasa server:
 
 * Import the DeliveryBot zip --> go to ``Bots``
 
-* Edit the endpoint address like in step 6 as in [Here](https://github.com/ayaallaa/Delivery-Chatbot/tree/main/Rasa_Chatbot/MS%20Teams%20Integration#creating-an-app-for-microsoft-teams) & make sure it's running & correct. 
+* Edit the endpoint address like in step 6 as mentioned above & make sure it's running & correct. 
 
 * Complete the same steps from 7 till the end.
 
-* Train Rasa chatbot & run it as in [Here](https://github.com/ayaallaa/Delivery-Chatbot/tree/main/Rasa_Chatbot/MS%20Teams%20Integration#start-the-chatbot)
+* Train Rasa chatbot 
+
+* Run the Rasa server& the actions server as mentioned above.
+
+* Start to say Hi to the bot.
