@@ -3,7 +3,7 @@ To integrate the Rasa chatbot on Microsoft Teams, firstly we will have to create
  
 ## CREATING AN APP FOR MICROSOFT TEAMS:
 
-### link for video: 
+### link for video to show the steps in details: 
 
 https://www.youtube.com/watch?v=JiACbrwBQ1A&t=1223s
 
@@ -21,7 +21,21 @@ https://www.youtube.com/watch?v=JiACbrwBQ1A&t=1223s
 5. Now, go to Bots and setup the endpoint for the rasa chatbot which is alive and ready to talk to. Here you will get the app_id and app_password(after generating), that you need to setup in the credentials.yml file of the rasa chatbot. After you will add the credentials you will have to rerun the rasa application to take the changes to effect.
 
 6. Here you have to setup the endpoint, and the endpoint should be the SSL certified, and it will be of this format,
-https://<domain-name>/webhooks/botframework/webhook 
+   ``https://<domain-name>/webhooks/botframework/webhook ``
+
+   - We will use **ngrok** as a local server [ngrok Docs](https://ngrok.com/docs).
+
+     - to expose a web server on port 5005 of your local machine to the internet 
+
+       ``ngrok http 5005`` **_Note_**: 5005 is the same port number that ' Rasa ' server uses. 
+      
+       it will start like the folowing image:
+
+![App Details](https://github.com/ayaallaa/Delivery-Chatbot/blob/main/Rasa_Chatbot/images/ngrok.png?raw=true)
+       
+       we will take the https url and put it in the endpoint adress like the following: 
+       
+       `` https://9412c649e0fe.ngrok.io/webhooks/botframework/webhook ``
 
 7. Once you have added the endpoint, just verify it. If it is verified successfully that means you chatbot alive and have established the successful connection and we are good to go.
 
@@ -35,12 +49,23 @@ https://<domain-name>/webhooks/botframework/webhook
 
 12. Here you can now talk to the bot that you just setup.
 
-
 In the above steps we have successfully setup everything that is needed to integrate the rasa chatbot to MS teams. 
 
-how will you add the credentials to the rasa chatbot. To do that go to your Rasa project and open credentials.yml and add the microsoft credentails in the given way.
 
+## Add the credentials to the Rasa chatbot:
 
-`` botframework:
+Now add the credentials of botframework to the rasa chatbot. To do that go to Rasa project and open credentials.yml and add the microsoft credentails in the given way.
+
+``` 
+botframework:
      app_id: "<app-id-you-get-for-bot>"
-     app_password: "<app-password-you-get-for-bot>" ``
+     app_password: "<app-password-you-get-for-bot>" 
+```
+
+## Start the chatbot:
+
+Now everything should be done it's time to stert our chatbot & Rasa server:
+
+`` rasa run --model models --enable-api --cors "*" ``
+
+**_Note_**: **ngrok** should be runing too.
