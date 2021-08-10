@@ -83,7 +83,7 @@ Now everything should be done it's time to stert our chatbot & Rasa server:
 
 * Import the DeliveryBot zip --> go to ``Bots``
 
-* Edit the endpoint address like in step 6 as in [Here](https://github.com/ayaallaa/Delivery-Chatbot/tree/main/Rasa_Chatbot/MS%20Teams%20Integration#start-the-chatbot) & make sure it's running & correct. 
+* Edit the endpoint address like in step 6 as in [Here](https://github.com/ayaallaa/Delivery-Chatbot/tree/main/Rasa_Chatbot/MS%20Teams%20Integration#creating-an-app-for-microsoft-teams) & make sure it's running & correct. 
 
 * Complete the same steps from 7 till the end.
 
