@@ -14,6 +14,7 @@ from rasa_sdk.events import SlotSet, EventType,UserUtteranceReverted
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
+from datetime import datetime
 
     
 
@@ -33,7 +34,7 @@ class AppointmentInfoForm(Action):
         # else:
         #     required_slots = ["confirm_exercise", "time","location"]
         
-        required_slots = ["confirm_exercise", "time","location", "entrance"]
+        required_slots = ["confirm_exercise","date", "time","location", "entrance"]
         # required_slots = ["time","location"]
         for slot_name in required_slots:
 
@@ -59,6 +60,7 @@ class ActionSubmit(Action):
     ) -> List[Dict[Text, Any]]:
         dispatcher.utter_message(response="utter_details_thanks",
                                   Confirmed=tracker.get_slot("confirm_time"),
+                                  Date =tracker.get_slot("date"),
                                   Time=tracker.get_slot("time"),
                                   Location=tracker.get_slot("location"),
                                   Entrance= tracker.get_slot("entrance") )
@@ -91,28 +93,28 @@ class ValidateNameForm(FormValidationAction):
         if building in self.locations:
             
             if len(self.locations.get(building))>0:
-              if building == 'curie':
-                    dispatcher.utter_message(buttons = [
-                    {"payload": "/Entrance{'entrance':'E'}", "title": "E","type": "postBack"},
-                    {"payload": "/Entrance{'entrance':'B'}", "title": "B","type": "postBack"},
-                    {"payload": "/Entrance{'entrance':'C'}", "title": "C","type": "postBack"},
-                    {"payload": "/Entrance{'entrance':'D'}", "title": "D","type": "postBack"},])
-              elif building == 'laplace':
-                  dispatcher.utter_message(buttons = [
-                    {"payload": "/Entrance{'entrance':'East'}", "title": "East","type": "postBack"},
-                    {"payload": "/Entrance{'entrance':'West'}", "title": "West","type": "postBack"},
-                    ])
-              elif building == 'copernic':
-                  dispatcher.utter_message(buttons = [
-                    {"payload": "/Entrance{'entrance':'G'}", "title": "G","type": "postBack"},
-                    {"payload": "/Entrance{'entrance':'H'}", "title": "H","type": "postBack"},
-                    {"payload": "/Entrance{'entrance':'EBC'}", "title": "EBC","type": "postBack"},
-                    ])
-              elif building == 'newton':
-                  dispatcher.utter_message(buttons = [
-                    {"payload": "/Entrance{'entrance':'F'}", "title": "F","type": "postBack"},
-                    {"payload": "/Entrance{'entrance':'B'}", "title": "B","type": "postBack"},
-                    ])
+              # if building == 'curie':
+              #       dispatcher.utter_message(buttons = [
+              #       {"payload": "/Entrance{'entrance':'E'}", "title": "E","type": "postBack"},
+              #       {"payload": "/Entrance{'entrance':'B'}", "title": "B","type": "postBack"},
+              #       {"payload": "/Entrance{'entrance':'C'}", "title": "C","type": "postBack"},
+              #       {"payload": "/Entrance{'entrance':'D'}", "title": "D","type": "postBack"},])
+              # elif building == 'laplace':
+              #     dispatcher.utter_message(buttons = [
+              #       {"payload": "/Entrance{'entrance':'East'}", "title": "East","type": "postBack"},
+              #       {"payload": "/Entrance{'entrance':'West'}", "title": "West","type": "postBack"},
+              #       ])
+              # elif building == 'copernic':
+              #     dispatcher.utter_message(buttons = [
+              #       {"payload": "/Entrance{'entrance':'G'}", "title": "G","type": "postBack"},
+              #       {"payload": "/Entrance{'entrance':'H'}", "title": "H","type": "postBack"},
+              #       {"payload": "/Entrance{'entrance':'EBC'}", "title": "EBC","type": "postBack"},
+              #       ])
+              # elif building == 'newton':
+              #     dispatcher.utter_message(buttons = [
+              #       {"payload": "/Entrance{'entrance':'F'}", "title": "F","type": "postBack"},
+              #       {"payload": "/Entrance{'entrance':'B'}", "title": "B","type": "postBack"},
+              #       ])
               return{"location": slot_value}
             else:
               return {"entrance":"no","location": slot_value}
@@ -129,24 +131,42 @@ class ValidateNameForm(FormValidationAction):
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
         if value:
-            return {"time": "10 am","confirm_time": True}
+            Date = datetime.today().strftime('%Y-%m-%d')
+            return {"date":Date,"time": "10 am","confirm_time": True}
         else:
+            # dispatcher.utter_message(buttons = [
+            #         {"payload": '/Date{{"date":"Today"}}', "title": "Today"},
+            #         {"payload": '/Date{{"date":"Another Day"}}', "title": "Another Day"},])
             return {"confirm_time": False }
         
-    def validate_entrance(
+    async def validate_date(
         self,
         value: Text,
         dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
+        if value=="Today":
+            Date = datetime.today().strftime('%Y-%m-%d')
+            return {"date":Date}
+        elif value == "Another day":
+            dispatcher.utter_message(text="Please choose the date")
+            return {"date":None}
         
-        Entrances= self.locations.get(tracker.get_slot("location"))
-        if value in Entrances:
-            return {"entrance": value}
-        else:
-            dispatcher.utter_message(text="That's not valid Entrance. \nYou should choose one of the following: \n{Entrances}.")
-            return {"entrance": None}
+    # def validate_entrance(
+    #     self,
+    #     value: Text,
+    #     dispatcher: CollectingDispatcher,
+    #     tracker: Tracker,
+    #     domain: Dict[Text, Any],
+    # ) -> Dict[Text, Any]:
+        
+    #     Entrances= self.locations.get(tracker.get_slot("location").lower())
+    #     if value in Entrances:
+    #         return {"entrance": value}
+    #     else:
+    #         dispatcher.utter_message(text="That's not valid Entrance. \nYou should choose one of the following: \n{Entrances}.")
+    #         return {"entrance": None}
         
         
         
