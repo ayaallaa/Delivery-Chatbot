@@ -10,7 +10,7 @@
 from typing import Any, Text, Dict, List, Union
 
 from rasa_sdk import Action, Tracker , FormValidationAction
-from rasa_sdk.events import SlotSet, EventType,UserUtteranceReverted
+from rasa_sdk.events import SlotSet, EventType,UserUtteranceReverted, ConversationPaused
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
@@ -64,6 +64,7 @@ class ActionSubmit(Action):
                                   Time=tracker.get_slot("time"),
                                   Location=tracker.get_slot("location"),
                                   Entrance= tracker.get_slot("entrance") )
+        return [ConversationPaused()]
         
 
 
