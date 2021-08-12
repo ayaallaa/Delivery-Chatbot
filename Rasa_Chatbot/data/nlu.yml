@@ -15,7 +15,6 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-    
 - intent: goodbye
   examples: |
     - good afternoon
@@ -29,7 +28,7 @@ nlu:
     - see you around
     - bye bye
     - see you later
-    
+    - Bye!
 - intent: affirm
   examples: |
     - yes
@@ -40,7 +39,6 @@ nlu:
     - ok great
     - fine
     - yeah, great
-    - ok great
     - pretty good
     - indeed
     - of course
@@ -53,7 +51,6 @@ nlu:
     - so perfect
     - good
     - perfect
-    
 - intent: deny
   examples: |
     - no
@@ -64,61 +61,24 @@ nlu:
     - don't like that
     - no way
     - not really
-    - it does'nt work for me
+    - it doesn't work for me
     - no it does'nt
     - pick another one
-    
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-    
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-    
+    - nope
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-    
-    
 - intent: parcel_info
   examples: |
     - what is the parcel like?
-    - what it contains?
-    - who send it?
-    - where it comes from?
+    - what does it contain?
+    - who sent it?
+    - where does it come from?
     - what parcel?
     - what info do you have on this parcel?
-    
 - intent: change_location
   examples: |
     - no this location doesn't suit me
@@ -128,20 +88,15 @@ nlu:
     - can we change this location
     - change this location
     - change the place
-    
-# - intent: change_time
-#   examples: |
-#     - pick another time
-#     - no, I'm busy
-
 - intent: Date
   examples: |
     - [tommorow](date)
     - [the day after tommorow](date)
-    - [in the next day](date)
+    - [next Tuesday](date)
+    - [next monday](date)
     - [next week](date)
     - make it [today](date)
-         
+    - monday [august 16th](date)
 - intent: Location
   examples: |
     - [chappe](location)
@@ -154,7 +109,6 @@ nlu:
     - [huygens](location)
     - [ritchie](location)
     - [torricelli](location)
-    
 - intent: Time
   examples: |
     - what about [4 pm](time)
@@ -165,22 +119,23 @@ nlu:
     - [7 am](time)
     - [9 am](time)
     - [10 am](time)
-    - [5 pm](time)
-
+    - [11am](time)
+    - [6pm](time)
+    - [7pm](time)
+    - around [10am](time)
 - intent: Entrance
   examples: |
     - let it be [A](entrance)
     - [E](entrance)
     - [B](entrance)
+    - [C](entrance)
     - [e](entrance)
     - [EBC](entrance)
     - [D](entrance)
-    - [E](entrance)
     - [H](entrance)
     - [b](entrance)
     - make it [west](entrance)
     - what about [east](entrance)
-    
 - intent: out_of_scope
   examples: |
     - that's not what I want to do

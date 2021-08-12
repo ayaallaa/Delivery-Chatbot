@@ -1,276 +1,250 @@
 version: '2.0'
-  
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
 intents:
 - affirm
-- greet
-- Time:
-   use_entities:
-     - time
-- Location:
-   use_entities:
-     - location
 - Entrance:
-   use_entities:
-     - entrance
-- change_location
+    use_entities:
+    - entrance
+- Location:
+    use_entities:
+    - location
+- Time:
+    use_entities:
+    - time
 - goodbye
+- greet
+- Date
 - deny
-- mood_great
-- mood_unhappy
+- change_location
 - bot_challenge
 - confirmd
 - not_confimed
 - parcel_info
 - out_of_scope
-
 entities:
-- time
 - date
-- location
 - entrance
-
+- location
+- time
 slots:
   confirm_time:
-     type: bool
-     influence_conversation: true
+    type: bool
+    influence_conversation: true
   time:
     type: text
+    influence_conversation: true
   date:
     type: text
+    influence_conversation: true
   location:
     type: text
+    influence_conversation: true
   entrance:
     type: text
-
-    
+    influence_conversation: true
 responses:
-  
   utter_ask_confirm_time:
-  - text: "Does 10 am suits you?"
-  
+  - text: Does 4 pm today suit you?
   utter_greet:
-  - text: "Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.\n\n Do you want to start?"
- 
+  - text: |-
+      Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
+
+       Do you want to start?
   utter_ask_time:
   - text: Okay, When would you like to receive it?
-  
   utter_ask_date:
-   - text: Please choose the date
-     buttons:
-         - title: "Today"
-           payload: /Date{{"date":"Today"}}
-           type: 'postBack'
-            
-         - title: "Another day"
-           payload: /Date{{"date":"Another day"}}
-           type: 'postBack'
-   
-  utter_ask_location:   
-  - text: Please choose the building 
-    image: "https://raw.githubusercontent.com/ayaallaa/Delivery-Chatbot/main/map.jpeg" 
+  - text: Please choose the date
     buttons:
-        - title: "Curie"
-          payload: /Location{{"location":"Curie"}}
-          type: 'postBack'
-          
-        - title: "Chappe"
-          payload: /Location{{"location":"Chappe"}}
-          type: 'postBack'
-          
-        - title: "Shannon"
-          payload: /Location{{"location":"Shannon"}}
-          type: 'postBack'
-          
-        - title: "Pascal"
-          payload: /Location{{"location":"Pascal"}}
-          type: 'postBack'
-          
-        - title: "Laplace"
-          payload: /Location{{"location":"Laplace"}}
-          type: 'postBack'
-         
-        - title: "Torricelli"
-          payload: /Location{{"location":"torricelli"}}
-          type: 'postBack'
-          
-        - title: "Ritchie"
-          payload: /Location{{"location":"Ritchie"}}
-          type: 'postBack'
-          
-        - title: "Copernic"
-          payload: /Location{{"location":"Copernic"}}
-          type: 'postBack'
-                    
-        - title: "Bourseul"
-          payload: /Location{{"location":"Bourseul"}}
-          type: 'postBack'
-          
-        - title: "Galilee"
-          payload: /Location{{"location":"Galilee"}}
-          type: 'postBack'
-          
-        - title: "Montgomerie"
-          payload: /Location{{"location":"Montgomerie"}}
-          type: 'postBack'
-          
-        - title: "Huygens"
-          payload: /Location{{"location":"Huygens"}}
-          type: 'postBack'
-          
-        - title: "Newton"
-          payload: /Location{{"location":"Newton"}}
-          type: 'postBack'
-                          
+    - title: Today
+      payload: /Date{{"date":"Today"}}
+      type: postBack
+    - title: Tomorrow
+      payload: /Date{{"date":"Tomorrow"}}
+      type: postBack
+    - title: Another day
+      payload: /Date{{"date":"Another day"}}
+      type: postBack
+  utter_ask_location:
+  - text: Please choose the building
+    image: https://raw.githubusercontent.com/ayaallaa/Delivery-Chatbot/main/map.jpeg
+    buttons:
+    - title: Curie
+      payload: /Location{{"location":"Curie"}}
+      type: postBack
+    - title: Chappe
+      payload: /Location{{"location":"Chappe"}}
+      type: postBack
+    - title: Shannon
+      payload: /Location{{"location":"Shannon"}}
+      type: postBack
+    - title: Pascal
+      payload: /Location{{"location":"Pascal"}}
+      type: postBack
+    - title: Laplace
+      payload: /Location{{"location":"Laplace"}}
+      type: postBack
+    - title: Torricelli
+      payload: /Location{{"location":"torricelli"}}
+      type: postBack
+    - title: Ritchie
+      payload: /Location{{"location":"Ritchie"}}
+      type: postBack
+    - title: Copernic
+      payload: /Location{{"location":"Copernic"}}
+      type: postBack
+    - title: Bourseul
+      payload: /Location{{"location":"Bourseul"}}
+      type: postBack
+    - title: Galilee
+      payload: /Location{{"location":"Galilee"}}
+      type: postBack
+    - title: Montgomerie
+      payload: /Location{{"location":"Montgomerie"}}
+      type: postBack
+    - title: Huygens
+      payload: /Location{{"location":"Huygens"}}
+      type: postBack
+    - title: Newton
+      payload: /Location{{"location":"Newton"}}
+      type: postBack
   utter_ask_entrance:
-  # - text: Please Choose an entrance
-    - condition:
-        - type: slot
-          name: location
-          value: Curie
-      text: Please Choose an entrance
-      buttons:
-      - title: "E"
-        payload: /Entrance{{"entrance":"E"}}
-        type: 'postBack'
-          
-      - title: "B"
-        payload: /Entrance{{"entrance":"B"}}
-        type: 'postBack'
-          
-      - title: "C"
-        payload: /Entrance{{"entrance":"C"}}
-        type: 'postBack'
-          
-      - title: "D"
-        payload: /Entrance{{"entrance":"D"}}
-        type: 'postBack'
-        
-    - condition:
-        - type: slot
-          name: location
-          value: Laplace
-      text: Please Choose an entrance
-      buttons:
-      - title: "East"
-        payload: /Entrance{{"entrance":"East"}}
-        type: 'postBack'
-          
-      - title: "West"
-        payload: /Entrance{{"entrance":"West"}}
-        type: 'postBack'
-          
-    - condition:
-        - type: slot
-          name: location
-          value: Copernic
-      text: Please Choose an entrance
-      buttons:
-      - title: "G"
-        payload: /Entrance{{"entrance":"G"}}
-        type: 'postBack'
-          
-      - title: "H"
-        payload: /Entrance{{"entrance":"H"}}
-        type: 'postBack'
-        
-      - title: "EBC"
-        payload: /Entrance{{"entrance":"EBC"}}
-        type: 'postBack'
-
-    - condition:
-        - type: slot
-          name: location
-          value: Newton
-      text: Please Choose an entrance
-      buttons:
-      - title: "B"
-        payload: /Entrance{{"entrance":"B"}}
-        type: 'postBack'
-          
-      - title: "F"
-        payload: /Entrance{{"entrance":"F"}}
-        type: 'postBack'
-        
-    - text: Please choose entrance
-
-       
+  - condition:
+    - type: slot
+      name: location
+      value: Curie
+    text: Please Choose an entrance
+    buttons:
+    - title: E
+      payload: /Entrance{{"entrance":"E"}}
+      type: postBack
+    - title: B
+      payload: /Entrance{{"entrance":"B"}}
+      type: postBack
+    - title: C
+      payload: /Entrance{{"entrance":"C"}}
+      type: postBack
+    - title: D
+      payload: /Entrance{{"entrance":"D"}}
+      type: postBack
+  - condition:
+    - type: slot
+      name: location
+      value: Laplace
+    text: Please Choose an entrance
+    buttons:
+    - title: East
+      payload: /Entrance{{"entrance":"East"}}
+      type: postBack
+    - title: West
+      payload: /Entrance{{"entrance":"West"}}
+      type: postBack
+  - condition:
+    - type: slot
+      name: location
+      value: Copernic
+    text: Please Choose an entrance
+    buttons:
+    - title: G
+      payload: /Entrance{{"entrance":"G"}}
+      type: postBack
+    - title: H
+      payload: /Entrance{{"entrance":"H"}}
+      type: postBack
+    - title: EBC
+      payload: /Entrance{{"entrance":"EBC"}}
+      type: postBack
+  - condition:
+    - type: slot
+      name: location
+      value: Newton
+    text: Please Choose an entrance
+    buttons:
+    - title: B
+      payload: /Entrance{{"entrance":"B"}}
+      type: postBack
+    - title: F
+      payload: /Entrance{{"entrance":"F"}}
+      type: postBack
+  - text: Please choose entrance
   utter_change_location:
   - text: Please choose building.
-    
-  
   utter_out_of_scope:
   - text: Sorry, I didn't get what you said. Please rephrase what you said.
- 
   utter_confirmed:
   - text: Great, your delivry time and location are confirmed.
-  
   utter_not_confirmed:
   - text: okay, let me know what would suit you then.
-  
   utter_parcel_info:
   - text: Sorry, I don't have any information about the parcel.
-  
   utter_default:
   - text: Sorry, I didn't understant. Please try again...
-  
   utter_details_thanks:
-    - condition:
-        - type: slot
-          name: entrance
-          value: no
-      text: "Great, your delivry time and location are confirmed.\n\n Date:{Date} \n \nTime: {Time} \n \nLocation: {Location} building, main entrance\n\nSee you!"
-      
-    - text: "Great, your delivry time and location are confirmed.\n\n Date:{Date} \n \nTime: {Time} \n \nLocation: {Location} building, {Entrance} entrance\n\nSee you!"
-  
+  - condition:
+    - type: slot
+      name: entrance
+      value: no
+    text: |-
+      Great, your delivry time and location are confirmed.
+
+       Date:{Date} 
+       
+      Time: {Time} 
+       
+      Location: {Location} building, main entrance
+
+      See you!
+  - text: |-
+      Great, your delivry time and location are confirmed.
+
+       Date:{Date} 
+       
+      Time: {Time} 
+       
+      Location: {Location} building, {Entrance} entrance
+
+      See you!
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: 'Here is something to cheer you up:'
-  
   utter_did_that_help:
   - text: Did that help you?
-  
   utter_happy:
   - text: Great, carry on!
-  
   utter_goodbye:
   - text: Bye
-  
   utter_iamabot:
   - text: I am your delivery bot, powered by Rasa.
-  
   utter_custom:
   - text: Sorry, I didn't get that. Please try again...
-  
 actions:
-  - action_submit
-  - validate_user_details_form
-  - action_custom_fallback
-  - utter_custom
-  # - utter_ask_entrance
-
+- action_custom_fallback
+- action_submit
+- utter_confirmed
+- utter_custom
+- utter_goodbye
+- utter_greet
+- validate_user_details_form
 forms:
-   user_details_form:
+  user_details_form:
     required_slots:
-     confirm_time:
-        - intent: affirm
-          type: from_intent
-          value: True
-        - intent: deny
-          type: from_intent
-          value: False    
-     date:
-        - type: from_entity
-          entity: date
-     time:
-        - type: from_entity
-          entity: time
-     location:
-        - type: from_entity
-          entity: location
-     entrance:
-        - type: from_entity
-          entity: Entrance
-
-session_config:
-  session_expiration_time: 60 # value in minutes, 0 means infinitely long
-  carry_over_slots_to_new_session: true # set to false to forget slots between sessions
+      confirm_time:
+      - intent: affirm
+        type: from_intent
+        value: true
+      - intent: deny
+        type: from_intent
+        value: false
+      date:
+      - type: from_entity
+        entity: date
+      time:
+      - type: from_entity
+        entity: time
+      location:
+      - type: from_entity
+        entity: location
+      entrance:
+      - type: from_entity
+        entity: Entrance

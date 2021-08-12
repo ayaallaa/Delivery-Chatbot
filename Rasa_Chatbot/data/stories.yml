@@ -110,3 +110,137 @@ stories:
 #   - active_loop: null
 #   - action: action_submit
 
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: user_details_form
+  - active_loop: user_details_form
+  - slot_was_set:
+    - requested_slot: confirm_time
+  - slot_was_set:
+    - confirm_time: false
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: Today
+  - slot_was_set:
+    - date: '2021-08-11'
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: 11am
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: Shannon
+  - slot_was_set:
+    - entrance: no
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: user_details_form
+  - active_loop: user_details_form
+  - slot_was_set:
+    - requested_slot: confirm_time
+  - slot_was_set:
+    - confirm_time: false
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: Tomorrow
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: user_details_form
+  - active_loop: user_details_form
+  - slot_was_set:
+    - requested_slot: confirm_time
+  - slot_was_set:
+    - confirm_time: false
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: Tomorrow
+  - slot_was_set:
+    - date: '2021-08-12'
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: 7pm
+  - slot_was_set:
+    - time: 7pm
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: Chappe
+  - slot_was_set:
+    - location: Chappe
+  - slot_was_set:
+    - entrance: no
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: affirm
+  - action: user_details_form
+  - active_loop: user_details_form
+  - slot_was_set:
+    - requested_slot: confirm_time
+  - slot_was_set:
+    - confirm_time: false
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: Another day
+  - slot_was_set:
+    - date: null
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: august 16th
+  - slot_was_set:
+    - date: august 16th
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: 10am
+  - slot_was_set:
+    - time: 10am
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: Copernic
+  - slot_was_set:
+    - location: Copernic
+  - slot_was_set:
+    - requested_slot: entrance
+  - intent: Entrance
+    entities:
+    - entrance: H
+  - slot_was_set:
+    - entrance: H
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit
+  - action: utter_details_thanks

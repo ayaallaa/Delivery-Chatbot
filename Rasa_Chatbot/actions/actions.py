@@ -14,7 +14,7 @@ from rasa_sdk.events import SlotSet, EventType,UserUtteranceReverted
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
-from datetime import datetime
+from datetime import date,timedelta
 
     
 
@@ -131,8 +131,8 @@ class ValidateNameForm(FormValidationAction):
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
         if value:
-            Date = datetime.today().strftime('%Y-%m-%d')
-            return {"date":Date,"time": "10 am","confirm_time": True}
+            Date = date.today().strftime('%Y-%m-%d')
+            return {"date":Date,"time": "4pm","confirm_time": True}
         else:
             # dispatcher.utter_message(buttons = [
             #         {"payload": '/Date{{"date":"Today"}}', "title": "Today"},
@@ -147,7 +147,10 @@ class ValidateNameForm(FormValidationAction):
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
         if value=="Today":
-            Date = datetime.today().strftime('%Y-%m-%d')
+            Date = date.today().strftime('%Y-%m-%d')
+            return {"date":Date}
+        elif value == "Tomorrow":
+            Date = (date.today() + timedelta(days=1)).strftime('%Y-%m-%d')
             return {"date":Date}
         elif value == "Another day":
             dispatcher.utter_message(text="Please choose the date")
