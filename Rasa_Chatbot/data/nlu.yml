@@ -97,6 +97,9 @@ nlu:
     - [next week](date)
     - make it [today](date)
     - monday [august 16th](date)
+    - [2020-08-12](date)
+    - [2021-9-2](date)
+    - [2018-06-10](date)
 - intent: Location
   examples: |
     - [chappe](location)
@@ -136,6 +139,14 @@ nlu:
     - [b](entrance)
     - make it [west](entrance)
     - what about [east](entrance)
+- intent:  Recipient
+  examples: |
+    - let it be [alise@gmail.com](recipient)
+    - [lucien@gmail.com](recipient)
+    - [jason@nokia-bell-labs.com](recipient)
+    - [emy@nokia-bell-labs.com](recipient)
+    - give it to [alix@nokia-bell-labs.com](recipient)
+    - [hagar@nokia-bell-labs.com](recipient)
 - intent: out_of_scope
   examples: |
     - that's not what I want to do
