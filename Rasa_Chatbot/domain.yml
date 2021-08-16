@@ -3,7 +3,12 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- Recipient:
+    use_entities:
+    - recipient
+- Date
 - affirm
+- deny
 - Entrance:
     use_entities:
     - entrance
@@ -15,8 +20,6 @@ intents:
     - time
 - goodbye
 - greet
-- Date
-- deny
 - change_location
 - bot_challenge
 - confirmd
@@ -27,10 +30,14 @@ entities:
 - date
 - entrance
 - location
+- recipient
 - time
 slots:
   confirm_time:
     type: bool
+    influence_conversation: true
+  recipient:
+    type: text
     influence_conversation: true
   time:
     type: text
@@ -45,17 +52,24 @@ slots:
     type: text
     influence_conversation: true
 responses:
+  utter_ask_recipient:
+  - text: Please give me the email address of the other person.
   utter_ask_confirm_time:
   - text: Does 4 pm today suit you?
   utter_greet:
   - text: |-
-      Hello, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
-
-       Do you want to start?
+      Hello {name}, I am your delivery bot, I am here to arrange a pickup time and location for your parcel.
+      Do you want to start?
   utter_ask_time:
   - text: Okay, When would you like to receive it?
   utter_ask_date:
-  - text: Please choose the date
+  # - condition:
+  #   - type: slot
+  #     name: date
+  #     value: Anather day
+  #   text: Please choose a valid date in the following format "%Y-%m-%d"
+    
+  - text: Which day would be suitable for you 
     buttons:
     - title: Today
       payload: /Date{{"date":"Today"}}
@@ -65,6 +79,9 @@ responses:
       type: postBack
     - title: Another day
       payload: /Date{{"date":"Another day"}}
+      type: postBack
+    - title: Another person to recieve my parcel
+      payload: /Date{{"date":"Another Person"}}
       type: postBack
   utter_ask_location:
   - text: Please choose the building
@@ -110,63 +127,63 @@ responses:
       payload: /Location{{"location":"Newton"}}
       type: postBack
   utter_ask_entrance:
-  - condition:
-    - type: slot
-      name: location
-      value: Curie
-    text: Please Choose an entrance
-    buttons:
-    - title: E
-      payload: /Entrance{{"entrance":"E"}}
-      type: postBack
-    - title: B
-      payload: /Entrance{{"entrance":"B"}}
-      type: postBack
-    - title: C
-      payload: /Entrance{{"entrance":"C"}}
-      type: postBack
-    - title: D
-      payload: /Entrance{{"entrance":"D"}}
-      type: postBack
-  - condition:
-    - type: slot
-      name: location
-      value: Laplace
-    text: Please Choose an entrance
-    buttons:
-    - title: East
-      payload: /Entrance{{"entrance":"East"}}
-      type: postBack
-    - title: West
-      payload: /Entrance{{"entrance":"West"}}
-      type: postBack
-  - condition:
-    - type: slot
-      name: location
-      value: Copernic
-    text: Please Choose an entrance
-    buttons:
-    - title: G
-      payload: /Entrance{{"entrance":"G"}}
-      type: postBack
-    - title: H
-      payload: /Entrance{{"entrance":"H"}}
-      type: postBack
-    - title: EBC
-      payload: /Entrance{{"entrance":"EBC"}}
-      type: postBack
-  - condition:
-    - type: slot
-      name: location
-      value: Newton
-    text: Please Choose an entrance
-    buttons:
-    - title: B
-      payload: /Entrance{{"entrance":"B"}}
-      type: postBack
-    - title: F
-      payload: /Entrance{{"entrance":"F"}}
-      type: postBack
+  # - condition:
+  #   - type: slot
+  #     name: location
+  #     value: Curie
+  #   text: Please Choose an entrance
+  #   buttons:
+  #   - title: E
+  #     payload: /Entrance{{"entrance":"E"}}
+  #     type: postBack
+  #   - title: B
+  #     payload: /Entrance{{"entrance":"B"}}
+  #     type: postBack
+  #   - title: C
+  #     payload: /Entrance{{"entrance":"C"}}
+  #     type: postBack
+  #   - title: D
+  #     payload: /Entrance{{"entrance":"D"}}
+  #     type: postBack
+  # - condition:
+  #   - type: slot
+  #     name: location
+  #     value: Laplace
+  #   text: Please Choose an entrance
+  #   buttons:
+  #   - title: East
+  #     payload: /Entrance{{"entrance":"East"}}
+  #     type: postBack
+  #   - title: West
+  #     payload: /Entrance{{"entrance":"West"}}
+  #     type: postBack
+  # - condition:
+  #   - type: slot
+  #     name: location
+  #     value: Copernic
+  #   text: Please Choose an entrance
+  #   buttons:
+  #   - title: G
+  #     payload: /Entrance{{"entrance":"G"}}
+  #     type: postBack
+  #   - title: H
+  #     payload: /Entrance{{"entrance":"H"}}
+  #     type: postBack
+  #   - title: EBC
+  #     payload: /Entrance{{"entrance":"EBC"}}
+  #     type: postBack
+  # - condition:
+  #   - type: slot
+  #     name: location
+  #     value: Newton
+  #   text: Please Choose an entrance
+  #   buttons:
+  #   - title: B
+  #     payload: /Entrance{{"entrance":"B"}}
+  #     type: postBack
+  #   - title: F
+  #     payload: /Entrance{{"entrance":"F"}}
+  #     type: postBack
   - text: Please choose entrance
   utter_change_location:
   - text: Please choose building.
@@ -181,29 +198,19 @@ responses:
   utter_default:
   - text: Sorry, I didn't understant. Please try again...
   utter_details_thanks:
-  - condition:
-    - type: slot
-      name: entrance
-      value: no
-    text: |-
+   - condition:
+     - type: slot
+       name: date
+       value: Not specified yet
+     text: |-
+       Great, I will reach {Recipient} to arrange an appointment.
+       Goodbye!
+       
+   - text: |-
       Great, your delivry time and location are confirmed.
-
-       Date:{Date} 
-       
+      Date:{Date} 
       Time: {Time} 
-       
-      Location: {Location} building, main entrance
-
-      See you!
-  - text: |-
-      Great, your delivry time and location are confirmed.
-
-       Date:{Date} 
-       
-      Time: {Time} 
-       
-      Location: {Location} building, {Entrance} entrance
-
+      Location: {Location} building, {Entrance} entrance.
       See you!
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
@@ -220,11 +227,11 @@ responses:
   - text: Sorry, I didn't get that. Please try again...
 actions:
 - action_custom_fallback
+- action_greet
 - action_submit
 - utter_confirmed
 - utter_custom
 - utter_goodbye
-- utter_greet
 - validate_user_details_form
 forms:
   user_details_form:
@@ -236,6 +243,9 @@ forms:
       - intent: deny
         type: from_intent
         value: false
+      recipient:
+      - type: from_entity
+        entity: Recipient
       date:
       - type: from_entity
         entity: date
