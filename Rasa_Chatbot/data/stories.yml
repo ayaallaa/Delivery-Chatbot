@@ -114,7 +114,7 @@ stories:
 - story: interactive_story_1
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_greet
   - intent: affirm
   - action: user_details_form
   - active_loop: user_details_form
@@ -146,7 +146,7 @@ stories:
 - story: interactive_story_1
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_greet
   - intent: affirm
   - action: user_details_form
   - active_loop: user_details_form
@@ -162,7 +162,7 @@ stories:
 - story: interactive_story_2
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_greet
   - intent: affirm
   - action: user_details_form
   - active_loop: user_details_form
@@ -200,7 +200,7 @@ stories:
 - story: interactive_story_1
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: action_greet
   - intent: affirm
   - action: user_details_form
   - active_loop: user_details_form
@@ -244,3 +244,37 @@ stories:
   - active_loop: null
   - action: action_submit
   - action: utter_details_thanks
+
+- story: interactive_story_1
+  steps:
+  - intent: affirm
+  - action: user_details_form
+  - active_loop: user_details_form
+  - slot_was_set:
+    - requested_slot: confirm_time
+  - slot_was_set:
+    - confirm_time: false
+  - slot_was_set:
+    - recipient: Hager
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: Another Person
+  - slot_was_set:
+    - date: Not specified yet
+  - slot_was_set:
+    - recipient: null
+  - slot_was_set:
+    - time: Not specified yet
+  - slot_was_set:
+    - location: Not specified yet
+  - slot_was_set:
+    - entrance: Not specified yet
+  - slot_was_set:
+    - requested_slot: recipient
+  - intent: Recipient
+    entities:
+    - recipient: hagar@nokia-bell-labs.com
+  - slot_was_set:
+    - recipient: hagar@nokia-bell-labs.com
+  - action: action_submit
