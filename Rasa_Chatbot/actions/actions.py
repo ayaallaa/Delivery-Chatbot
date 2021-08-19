@@ -16,12 +16,21 @@ from rasa_sdk.types import DomainDict
 
 from datetime import date,timedelta
 import json
-    
+
+global recipient_email
+recipient_email = "hager@gmail.com"    
+
 global user_name
 user_name = "Hager"
 
 global outlook_free_time 
 outlook_free_time = "4 pm"
+
+global locations
+locations = {'chappe':[], 'curie':['E', 'D', 'B', 'C'],'shannon':[], 
+             'pascal':[], 'laplace':['East','West'],'torricelli':[], 
+             'ritchie':[], 'copernic':['G','H', 'EBC'], 'bourseul':[],
+             'galilee':[], 'montgomerie':[], 'huygens':[], 'newton':['F','B'] }
 
 class AppointmentInfoForm(Action):
     def name(self) -> Text:
@@ -31,7 +40,7 @@ class AppointmentInfoForm(Action):
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
     ) -> List[EventType]:
 
-        required_slots = ["confirm_exercise","recipient","date","confrim_another_day", "time","location", "entrance"]
+        required_slots = ["language","confirm_time","recipient","another_day","date", "time","location", "entrance"]
 
         for slot_name in required_slots:
 
@@ -70,18 +79,20 @@ class ActionSubmit(Action):
         
         # try to add data to json file in the following format
         output=[]
-        Appointment_data= {'Recipant':recipient,
+        Appointment_data= {'Recipient':recipient,
                            'Date':date,
                            'Time':time,
                            'Building':building,
                            'Entrance':entrance}
+        
         output.append(Appointment_data)
         json_output = json.dumps(output, indent = 6)
 
         # Writing to Output.json in a file
         with open("Appointment_details.json", "w") as outfile:
           outfile.write(json_output)
-        return [ConversationPaused()]
+          
+        return [ConversationPaused()] 
         
 class ActionGreet(Action):
 
@@ -94,14 +105,31 @@ class ActionGreet(Action):
         dispatcher.utter_message(response="utter_greet",
                                  name=user_name)
         
-        return[UserUtteranceReverted()]  # to consider it a fallback action
+        return [] 
 
 
 class ValidateNameForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_user_details_form"
 
-
+    async def validate_language(
+        self,
+        value: Text,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> Dict[Text, Any]:
+        allowed_languages=['english','french','anglais','francais','en','fr']
+        language = value.lower()
+        if language in allowed_languages:
+            if language == "english" or language == "anglais" or language == "en":
+                return {"language":"en"}
+            else:
+                return {"language":"fr"}
+        else:
+            dispatcher.utter_message(text="Supported languages are English and French only")
+            return {"language":None }
+        
     async def validate_confirm_time(
         self,
         value: Text,
@@ -111,12 +139,9 @@ class ValidateNameForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         if value:
             Date = date.today().strftime('%Y-%m-%d')
-            return {"recipient":user_name,"date":Date,"time": "4pm","confirm_time": True}
+            return {"recipient":recipient_email,"date":Date,"time": "4 pm","confirm_time": True,"another_day": False}
         else:
-            # dispatcher.utter_message(buttons = [
-            #         {"payload": '/Date{{"date":"Today"}}', "title": "Today"},
-            #         {"payload": '/Date{{"date":"Another Day"}}', "title": "Another Day"},])
-            return {"recipient":user_name,"confirm_time": False }
+            return {"recipient":recipient_email,"another_day": False,"confirm_time": False }
         
         
     async def validate_date(
@@ -133,18 +158,22 @@ class ValidateNameForm(FormValidationAction):
             Date = (date.today() + timedelta(days=1)).strftime('%Y-%m-%d')
             return {"date":Date}
         elif value == "Another day":
-            dispatcher.utter_message(text="Please enter a valid date in the following format %Y-%m-%d")
-            return {"date":None}
+            return {"another_day": True,"date":None}
         elif value == "Another Person":
             return {"time": "Not specified yet","date": "Not specified yet",
                     "location": "Not specified yet", "entrance":"Not specified yet","recipient":None}
         else:
-            try:
-               Date = datetime.strptime(value, '%Y-%m-%d').date()
-               return {"date":Date}
-            except:
-               dispatcher.utter_message(text="Please enter a valid date in the following format %Y-%m-%d")
-               return {"date":None}
+            # return {"date":value}
+            # if tracker.get_slot("another_day"):
+              try:
+                Date = datetime.strptime(value, '%Y-%m-%d')
+                return {"date":value}
+              except:
+                if tracker.get_slot("language") == "en":
+                    dispatcher.utter_message(text="Please enter a valid date in the following format %Y-%m-%d")
+                else:
+                    dispatcher.utter_message(text="Veuillez saisir la date au format suivant %Y-%m-%d") 
+                return {"date":None}
             
             
     def validate_time(
@@ -164,8 +193,26 @@ class ValidateNameForm(FormValidationAction):
                final_time= datetime.strftime(time, "%H:%M")
                return{"time":final_time}
             except:
-               dispatcher.utter_message(text="please enter valid time")
-               return{"time":None}      
+                try:
+                   time = datetime.strptime(value, "%I %p")
+                   final_time= datetime.strftime(time, "%H:%M")
+                   return{"time":final_time}
+                except:
+                     try:
+                       time = datetime.strptime(value, "%I%p")
+                       final_time= datetime.strftime(time, "%H:%M")
+                       return{"time":final_time}
+                     except:
+                        try:
+                            time = datetime.strptime(value, "%I:%M")
+                            final_time= datetime.strftime(time, "%H:%M")
+                            return{"time":final_time}
+                        except:
+                            if tracker.get_slot("language") == "en":
+                               dispatcher.utter_message(text="Please enter a valid time (e.g 3:00 PM)")
+                            else:
+                               dispatcher.utter_message(text="Veuillez entrer une heure valide (e.g 3:00 PM)") 
+                            return{"time":None}      
         
         
     async def validate_location(
@@ -177,46 +224,23 @@ class ValidateNameForm(FormValidationAction):
     ) -> Dict[Text, Any]:
         """Validate `location` value."""
         
-        self.locations = {'chappe':[], 'curie':['E', 'D', 'B', 'C'],'shannon':[], 
-             'pascal':[], 'laplace':['East','West'],'torricelli':[], 
-             'ritchie':[], 'copernic':['G','H', 'EBC'], 'bourseul':[],
-             'galilee':[], 'montgomerie':[], 'huygens':[], 'newton':['F','B'] }
-        
         # If the building isn't exist
         print(f"location given = {slot_value}")
         
         building = slot_value.lower()
         
-        if building in self.locations:
+        if building in locations:
             
-            if len(self.locations.get(building))>0:
-               if building == 'curie':
-                     dispatcher.utter_message(buttons = [
-                     {"payload": "/Entrance{'entrance':'E'}", "title": "E","type": "postBack"},
-                     {"payload": "/Entrance{'entrance':'B'}", "title": "B","type": "postBack"},
-                     {"payload": "/Entrance{'entrance':'C'}", "title": "C","type": "postBack"},
-                     {"payload": "/Entrance{'entrance':'D'}", "title": "D","type": "postBack"},])
-               elif building == 'laplace':
-                   dispatcher.utter_message(buttons = [
-                     {"payload": "/Entrance{'entrance':'East'}", "title": "East","type": "postBack"},
-                     {"payload": "/Entrance{'entrance':'West'}", "title": "West","type": "postBack"},
-                     ])
-               elif building == 'copernic':
-                   dispatcher.utter_message(buttons = [
-                     {"payload": "/Entrance{'entrance':'G'}", "title": "G","type": "postBack"},
-                     {"payload": "/Entrance{'entrance':'H'}", "title": "H","type": "postBack"},
-                     {"payload": "/Entrance{'entrance':'EBC'}", "title": "EBC","type": "postBack"},
-                     ])
-               elif building == 'newton':
-                   dispatcher.utter_message(buttons = [
-                     {"payload": "/Entrance{'entrance':'F'}", "title": "F","type": "postBack"},
-                     {"payload": "/Entrance{'entrance':'B'}", "title": "B","type": "postBack"},
-                     ])
-            #   return{"location": slot_value}
+            if len(locations.get(building))>0:
+               return{"location": slot_value}
             else:
               return {"entrance":"main","location": slot_value}
         else:
-            dispatcher.utter_message(text="That's not valid Building. \nYou should choose one of the following: \n['Chappe', 'Curie', 'Shannon', 'Pascal', 'Laplace', 'Torricelli','Ritchie', 'Copernic', \n'Bourseul', 'Galilee', 'Montgomerie', 'Huygens', 'Newton'].")
+            buildings= ','.join([str(elem) for elem in locations])
+            if tracker.get_slot("language") == "en":
+                 dispatcher.utter_message(text="That's not valid Building. \nYou should choose one of the following: \n"+buildings)
+            else:
+                 dispatcher.utter_message(text="Ce n'est pas un bâtiment valide. \nVous devez choisir l'une des options suivantes: \n"+buildings)
             return {"location": None}
         
 
@@ -228,11 +252,12 @@ class ValidateNameForm(FormValidationAction):
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
         
-        Entrances= self.locations.get(tracker.get_slot("location").lower())
+        Entrances= locations.get(tracker.get_slot("location").lower())
         if value in Entrances:
             return {"entrance": value}
         else:
-            dispatcher.utter_message(text="That's not valid Entrance. \nYou should choose one of the following: \n{Entrances}.")
+            entrances = ','.join([str(elem) for elem in Entrances])
+            dispatcher.utter_message(text="That's not valid Entrance. \nYou should choose one of the following: \n"+entrances)
             return {"entrance": None}
                 
         
