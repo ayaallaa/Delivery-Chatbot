@@ -15,24 +15,12 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-- intent: goodbye
-  examples: |
-    - good afternoon
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
-    - Bye!
+    - bonjour
+    - salut
+    - bonsoir
 - intent: affirm
   examples: |
     - yes
-    - y
     - yap
     - why not!
     - yes it does
@@ -51,10 +39,30 @@ nlu:
     - so perfect
     - good
     - perfect
+    - oui
+    - Pourquoi pas!
+    - D'accord, super
+    - bien
+    - Ouais super
+    - très bon
+    - bien sûr
+    - Ça a l'air bien
+    - d'accord
+    - si bon
+    - tellement parfait
+    - bon
+    - parfait
+- intent: Language
+  examples: |
+    - [english](language)
+    - [french](language)
+    - [anglais](language)
+    - [français](language)
+    - [fr](language)
+    - [en](language)
 - intent: deny
   examples: |
     - no
-    - n
     - nop
     - never
     - I don't think so
@@ -65,12 +73,24 @@ nlu:
     - no it does'nt
     - pick another one
     - nope
+    - non
+    - jamais
+    - je ne pense pas
+    - n'aime pas ça
+    - certainement pas
+    - pas vraiment
+    - ça ne marche pas pour moi
+    - en choisir un autre
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - Etes-vous un robot?
+    - Êtes-vous un être humain?
+    - est-ce que je parle à un bot ?
+    - est-ce que je parle à un humain ?
 - intent: parcel_info
   examples: |
     - what is the parcel like?
@@ -79,15 +99,12 @@ nlu:
     - where does it come from?
     - what parcel?
     - what info do you have on this parcel?
-- intent: change_location
-  examples: |
-    - no this location doesn't suit me
-    - i want to change the location
-    - no this location isn't suitable for me
-    - change the location
-    - can we change this location
-    - change this location
-    - change the place
+    - à quoi ressemble le colis ?
+    - que contient-il ?
+    - qui l'a envoyé ?
+    - d'où est ce que ça vient?
+    - quel colis ?
+    - quelles informations avez-vous sur ce colis ?
 - intent: Date
   examples: |
     - [tommorow](date)
@@ -96,10 +113,18 @@ nlu:
     - [next monday](date)
     - [next week](date)
     - make it [today](date)
+    - [tommorow](date)
+    - [another day](date)
+    - [another person](date)
+    - [Aujourd'hui](date)
+    - [Demain](date)
     - monday [august 16th](date)
     - [2020-08-12](date)
     - [2021-9-2](date)
     - [2018-06-10](date)
+    - [2021/5/10](date)
+    - [2021/9/22](date)
+    - [2020-9-3](date)
 - intent: Location
   examples: |
     - [chappe](location)
@@ -126,6 +151,7 @@ nlu:
     - [6pm](time)
     - [7pm](time)
     - around [10am](time)
+    - [2:45 pm](time)
 - intent: Entrance
   examples: |
     - let it be [A](entrance)
@@ -133,13 +159,12 @@ nlu:
     - [B](entrance)
     - [C](entrance)
     - [e](entrance)
-    - [EBC](entrance)
     - [D](entrance)
     - [H](entrance)
     - [b](entrance)
     - make it [west](entrance)
     - what about [east](entrance)
-- intent:  Recipient
+- intent: Recipient
   examples: |
     - let it be [alise@gmail.com](recipient)
     - [lucien@gmail.com](recipient)
@@ -147,6 +172,7 @@ nlu:
     - [emy@nokia-bell-labs.com](recipient)
     - give it to [alix@nokia-bell-labs.com](recipient)
     - [hagar@nokia-bell-labs.com](recipient)
+    - [Aya@nokia-bell-labs.com](recipient)
 - intent: out_of_scope
   examples: |
     - that's not what I want to do
@@ -169,3 +195,25 @@ nlu:
     - I want to order food
     - What is 2 + 2?
     - Who's the US President?
+    - ce n'est pas ce que je veux faire
+    - attendre arrêt
+    - tu n'es d'aucune aide
+    - ce n'est d'aucune aide
+    - quel âge as-tu
+    - Je veux commander une pizza
+    - dis moi la météo
+    - cela ne fonctionne pas
+    - je te l'ai déjà dit
+    - n'aime pas ça
+    - je ne veux pas te dire ça
+    - ça ne vous concerne pas
+    - Ce n'est pas juste
+    - arrête de demander
+    - peu importe
+    - je veux faire autre chose
+    - J'ai changé d'avis
+    - je veux commander à manger
+    - Qu'est-ce que 2 + 2 ?
+    - Qui est le président américain ?
+    - klo
+    - ljuiygtd
