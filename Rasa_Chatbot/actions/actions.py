@@ -8,13 +8,13 @@
 
 
 from typing import Any, Text, Dict, List, Union
-from datetime import date,datetime
+
 from rasa_sdk import Action, Tracker , FormValidationAction
 from rasa_sdk.events import SlotSet, EventType,UserUtteranceReverted, ConversationPaused
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
 
-from datetime import date,timedelta
+from datetime import date,datetime,timedelta
 import json
 
 global recipient_email
@@ -26,11 +26,15 @@ user_name = "Hager"
 global outlook_free_time 
 outlook_free_time = "4 pm"
 
+global final_date
+final_date = (date.today() + timedelta(days=5)) #assume that it's withtin 5 days to deliver the parcel
+
 global locations
 locations = {'chappe':[], 'curie':['E', 'D', 'B', 'C'],'shannon':[], 
              'pascal':[], 'laplace':['East','West'],'torricelli':[], 
              'ritchie':[], 'copernic':['G','H', 'EBC'], 'bourseul':[],
              'galilee':[], 'montgomerie':[], 'huygens':[], 'newton':['F','B'] }
+
 
 class AppointmentInfoForm(Action):
     def name(self) -> Text:
@@ -151,11 +155,12 @@ class ValidateNameForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
+        Format = '%Y-%m-%d'
         if value=="Today":
-            Date = date.today().strftime('%Y-%m-%d')
+            Date = date.today().strftime(Format)
             return {"date":Date}
         elif value == "Tomorrow":
-            Date = (date.today() + timedelta(days=1)).strftime('%Y-%m-%d')
+            Date = (date.today() + timedelta(days=1)).strftime(Format)
             return {"date":Date}
         elif value == "Another day":
             return {"another_day": True,"date":None}
@@ -166,13 +171,21 @@ class ValidateNameForm(FormValidationAction):
             # return {"date":value}
             # if tracker.get_slot("another_day"):
               try:
-                Date = datetime.strptime(value, '%Y-%m-%d')
-                return {"date":value}
+                Date = datetime.strptime(value, Format).date() 
+                Today=date.today()
+                if Date >= Today and Date <= final_date: # to make sure that the date is within the allowed period
+                    return {"date":value}
+                else:
+                    if tracker.get_slot("language") == "en":
+                       dispatcher.utter_message(text="Please enter a valid date ,date should be between "+Today.strftime('%Y-%m-%d')+" and "+Date.strftime('%Y-%m-%d'))
+                    else:
+                       dispatcher.utter_message(text="Veuillez entrer une date valide, la date doit être comprise entre "+Today.strftime('%Y-%m-%d')+" et "+Date.strftime('%Y-%m-%d'))
+                    return {"date":None}
               except:
                 if tracker.get_slot("language") == "en":
-                    dispatcher.utter_message(text="Please enter a valid date in the following format %Y-%m-%d")
+                    dispatcher.utter_message(text="Please enter a valid date in the following format: "+Format)
                 else:
-                    dispatcher.utter_message(text="Veuillez saisir la date au format suivant %Y-%m-%d") 
+                    dispatcher.utter_message(text="Veuillez saisir la date au format suivant: "+ Format) 
                 return {"date":None}
             
             
