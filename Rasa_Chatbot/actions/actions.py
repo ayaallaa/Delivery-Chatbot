@@ -177,16 +177,29 @@ class ValidateNameForm(FormValidationAction):
                     return {"date":value}
                 else:
                     if tracker.get_slot("language") == "en":
-                       dispatcher.utter_message(text="Please enter a valid date ,date should be between "+Today.strftime('%Y-%m-%d')+" and "+Date.strftime('%Y-%m-%d'))
+                       dispatcher.utter_message(text="Please enter a valid date ,date should be between "+Today.strftime('%Y-%m-%d')+" and "+final_date.strftime('%Y-%m-%d'))
                     else:
-                       dispatcher.utter_message(text="Veuillez entrer une date valide, la date doit être comprise entre "+Today.strftime('%Y-%m-%d')+" et "+Date.strftime('%Y-%m-%d'))
+                       dispatcher.utter_message(text="Veuillez entrer une date valide, la date doit être comprise entre "+Today.strftime('%Y-%m-%d')+" et "+final_date.strftime('%Y-%m-%d'))
                     return {"date":None}
               except:
-                if tracker.get_slot("language") == "en":
+                try:
+                    Format = '%d/%m/%Y'
+                    Date = datetime.strptime(value, Format).date() 
+                    Today=date.today()
+                    if Date >= Today and Date <= final_date: # to make sure that the date is within the allowed period
+                      return {"date":value}
+                    else:
+                      if tracker.get_slot("language") == "en":
+                        dispatcher.utter_message(text="Please enter a valid date ,date should be between "+Today.strftime('%Y-%m-%d')+" and "+final_date.strftime('%Y-%m-%d'))
+                      else:
+                        dispatcher.utter_message(text="Veuillez entrer une date valide, la date doit être comprise entre "+Today.strftime('%Y-%m-%d')+" et "+final_date.strftime('%Y-%m-%d'))
+                      return {"date":None}
+                except:   
+                 if tracker.get_slot("language") == "en":
                     dispatcher.utter_message(text="Please enter a valid date in the following format: "+Format)
-                else:
+                 else:
                     dispatcher.utter_message(text="Veuillez saisir la date au format suivant: "+ Format) 
-                return {"date":None}
+                 return {"date":None}
             
             
     def validate_time(
