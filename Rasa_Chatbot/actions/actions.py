@@ -223,11 +223,12 @@ class ValidateNameForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
-        try:
+        if tracker.get_slot("language") == "en":
+         try:
           time = datetime.strptime(value, "%I:%M %p")
           final_time= datetime.strftime(time, "%H:%M")
           return{"time":final_time}
-        except:
+         except:
             try:
                time = datetime.strptime(value, "%I:%M%p")
                final_time= datetime.strftime(time, "%H:%M")
@@ -253,7 +254,16 @@ class ValidateNameForm(FormValidationAction):
                             else:
                                dispatcher.utter_message(text="Veuillez entrer une heure valide (e.g 3:00 PM)") 
                             return{"time":None}      
-        
+        else:
+            try:
+              x = value.index('h')
+              if x==len(value)-1:
+                time= value[0:x]+':'+'00'
+              else:
+                time = value[0:x]+ ':' + value[x+1:len(value)]
+              return({"time":time})
+            except:
+              return({"time":value})  
         
     async def validate_location(
         self,

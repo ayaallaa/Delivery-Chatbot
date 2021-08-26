@@ -273,3 +273,10 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: action_submit
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: action_greet
+  - intent: deny
+  - action: utter_goodbye

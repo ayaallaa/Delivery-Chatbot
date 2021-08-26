@@ -24,7 +24,7 @@ https://www.youtube.com/watch?v=JiACbrwBQ1A&t=1223s
 
    ``https://<domain-name>/webhooks/botframework/webhook ``
 
-   - We will use **ngrok** as a local server [ngrok Docs](https://ngrok.com/docs).
+   - We will use **ngrok** as a local server [ngrok Docs](https://ngrok.com/docs), its main feature is to allow to access a server from anywhere but its main drawback is that with the free account the endpoint URL changes every time ngrok is stopped/restarted, if rasa is running on a public server, then a simpler option is to [use nginx](https://forum.rasa.com/t/deploy-rasa-on-a-ssl-enabled-server/33763) to have a stable endpoint address to configure in Teams app.
 
      - to expose a web server on port 5005 of your local machine to the internet 
 
@@ -46,7 +46,7 @@ https://www.youtube.com/watch?v=JiACbrwBQ1A&t=1223s
 
 9. Now Click on download to download the app.
 
-10. Once you have downloaded the app, now go to apps again and you will notice and option “Upload a custom app“, click on it and select “Upload for my org“. Now select the file that you just downloaded to install it.
+10. Once you have downloaded the app, now go to apps again and you will notice and option “Upload a custom app“, click on it and select “Upload for my org“. Now select the file that you just downloaded to install it (**Note:** *this does not work on Nokia installed versions of Teams, you need to download a free version of MS Teams and upload the app using a non-corporate account, it is then possible to have the app shared among users of a non-Nokia org - for a regular deployment we'd need IT approval to deploy the app*).
 
 11. It will install the app and take you inside the app. So here you are, you have successfully setup the application successfully.
 
@@ -61,7 +61,7 @@ Now add the credentials of botframework to the rasa chatbot. To do that go to Ra
 
 ``` 
 botframework:
-     app_id: "<app-id-you-get-for-bot>"
+     app_id: "<app-id-you-get-for-bot>"  (from the bot section, not the app section)
      app_password: "<app-password-you-get-for-bot>" 
 ```
 
@@ -77,7 +77,7 @@ Now everything should be done it's time to stert our chatbot by starting
     
     `` rasa run actions ``
 
-**_Note_**: **ngrok** should be runing too.
+**_Note_**: **ngrok** should be running too.
 
 
 ## To use the DeliveryBot App:

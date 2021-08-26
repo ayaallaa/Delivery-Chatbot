@@ -72,7 +72,7 @@ responses:
     - type: slot
       name: language
       value: fr
-    text: 4 pm aujourd'hui vous convient?
+    text: 16h aujourd'hui vous convient?
   - text: Does 4 pm today suit you?
   utter_ask_language:
   - text: Which language would you prefer to conitinue the chat?
@@ -435,7 +435,7 @@ responses:
 
       Temps: {Time}\n\n
 
-      Emplacement : bâtiment {Location}, entrée {Entrance}.\n\n
+      Emplacement: bâtiment {Location}, entrée {Entrance}.\n\n
 
       À bientôt!"
   - text: "
@@ -462,6 +462,10 @@ responses:
       value: fr
     text: Désolé, je n'ai pas compris. Veuillez réessayer ...
   - text: Sorry, I didn't understand. Please try again...
+  
+  utter_goodbye:
+  - text: Okay, I will talk to you later. Bye!
+  
 actions:
 - action_custom_fallback
 - action_greet
