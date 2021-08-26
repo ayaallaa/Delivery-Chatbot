@@ -18,16 +18,16 @@ from datetime import date,datetime,timedelta
 import json
 
 global recipient_email
-recipient_email = "hager@gmail.com"    
+recipient_email = "mata.khalili@nokia-bell-labs.com"
 
 global user_name
-user_name = "Hager"
+user_name = "there"
 
 global outlook_free_time 
 outlook_free_time = "4 pm"
 
 global final_date
-final_date = (date.today() + timedelta(days=5)) #assume that it's withtin 5 days to deliver the parcel
+final_date = (date.today() + timedelta(days=10)) #assume that it's withtin 5 days to deliver the parcel
 
 global locations
 locations = {'chappe':[], 'curie':['E', 'D', 'B', 'C'],'shannon':[], 

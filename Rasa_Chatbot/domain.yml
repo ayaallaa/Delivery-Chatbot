@@ -433,7 +433,7 @@ responses:
 
       Date: {Date}\n\n
 
-      Temps: {Time}\n\n
+      Heure: {Time}\n\n
 
       Emplacement: bâtiment {Location}, entrée {Entrance}.\n\n
 
@@ -441,7 +441,7 @@ responses:
   - text: "
       Great, your delivry time and location are confirmed.\n\n
 
-      Date:{Date} \n\n
+      Date: {Date} \n\n
 
       Time: {Time} \n\n
 
