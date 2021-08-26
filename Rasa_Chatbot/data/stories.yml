@@ -280,3 +280,59 @@ stories:
   - action: action_greet
   - intent: deny
   - action: utter_goodbye
+  
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: action_greet
+  - intent: affirm
+  - action: user_details_form
+  - active_loop: user_details_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: fr
+  - slot_was_set:
+    - language: fr
+  - slot_was_set:
+    - requested_slot: confirm_time
+  - slot_was_set:
+    - confirm_time: false
+  - slot_was_set:
+    - recipient: hager@gmail.com
+  - slot_was_set:
+    - another_day: false
+  - slot_was_set:
+    - requested_slot: date
+  - slot_was_set:
+    - date: Tomorrow
+  - slot_was_set:
+    - date: '2021-08-27'
+  - slot_was_set:
+    - requested_slot: time
+  - slot_was_set:
+    - time: 4h
+  - slot_was_set:
+    - time: 4:00
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: Copernic
+  - slot_was_set:
+    - location: Copernic
+  - slot_was_set:
+    - requested_slot: entrance
+  - slot_was_set:
+    - entrance: E
+  - slot_was_set:
+    - entrance: null
+  - slot_was_set:
+    - requested_slot: entrance
+  - slot_was_set:
+    - entrance: G
+  - slot_was_set:
+    - entrance: G
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_submit

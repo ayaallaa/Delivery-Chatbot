@@ -168,9 +168,11 @@ nlu:
     - around [10am](time)
     - [2:45 pm](time)
     - around [5h](time)
-    -[6 h](time)
-    -[1h00](time)
-    -[8h40](time)
+    - [9h](time)
+    - [6h](time)
+    - [1h00](time)
+    - [8h40](time)
+    - [4h](time)
 - intent: Entrance
   examples: |
     - let it be [A](entrance)
@@ -183,6 +185,8 @@ nlu:
     - [b](entrance)
     - make it [west](entrance)
     - what about [east](entrance)
+    - [E](entrance)
+    - [G](entrance)
 - intent: Recipient
   examples: |
     - let it be [alise@gmail.com](recipient)
