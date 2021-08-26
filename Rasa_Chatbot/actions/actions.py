@@ -284,7 +284,10 @@ class ValidateNameForm(FormValidationAction):
             if len(locations.get(building))>0:
                return{"location": slot_value}
             else:
-              return {"entrance":"main","location": slot_value}
+              if tracker.get_slot("language") == "en":
+                return {"entrance":"main","location": slot_value}
+              else:
+                return {"entrance":"principale","location": slot_value}
         else:
             buildings= ','.join([str(elem) for elem in locations])
             if tracker.get_slot("language") == "en":
