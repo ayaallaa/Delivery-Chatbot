@@ -407,7 +407,7 @@ responses:
   - condition:
     - type: slot
       name: date
-      value: Another Person
+      value: Not specified yet
     - type: slot
       name: language
       value: en
@@ -417,7 +417,7 @@ responses:
   - condition:
     - type: slot
       name: date
-      value: Another Person
+      value: Not specified yet
     - type: slot
       name: language
       value: fr
