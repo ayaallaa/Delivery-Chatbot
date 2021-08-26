@@ -27,7 +27,7 @@ global outlook_free_time
 outlook_free_time = "4 pm"
 
 global final_date
-final_date = (date.today() + timedelta(days=10)) #assume that it's withtin 5 days to deliver the parcel
+final_date = (date.today() + timedelta(days=10)) #assume that it's withtin 10 days to deliver the parcel
 
 global locations
 locations = {'chappe':[], 'curie':['E', 'D', 'B', 'C'],'shannon':[], 
@@ -301,13 +301,18 @@ class ValidateNameForm(FormValidationAction):
         tracker: Tracker,
         domain: Dict[Text, Any],
     ) -> Dict[Text, Any]:
-        
-        Entrances= locations.get(tracker.get_slot("location").lower())
-        if value in Entrances:
-            return {"entrance": value}
-        else:
-            entrances = ','.join([str(elem) for elem in Entrances])
-            dispatcher.utter_message(text="That's not valid Entrance. \nYou should choose one of the following: \n"+entrances)
+        try:
+         Entrances= locations.get(tracker.get_slot("location").lower())
+         entrances = ','.join([str(elem) for elem in Entrances])
+         if value in Entrances:
+             return {"entrance": value}
+         else:
+            if tracker.get_slot("language") == "en":
+                dispatcher.utter_message(text="That's not valid Entrance. \nYou should choose one of the following: \n"+entrances)
+            else:
+                dispatcher.utter_message(text="Ce n'est pas une entrée valide. \n Vous devez choisir l'un des éléments suivants : \n"+entrances)
+            return {"entrance": None}
+        except:
             return {"entrance": None}
                 
         
