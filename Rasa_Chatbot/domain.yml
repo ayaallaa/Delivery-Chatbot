@@ -75,7 +75,7 @@ responses:
     text: 16h aujourd'hui vous convient?
   - text: Does 4 pm today suit you?
   utter_ask_language:
-  - text: Which language would you prefer to conitinue the chat?
+  - text: In which language would you prefer to continue the chat?
     buttons:
     - title: English
       payload: /Language{{"language":"en"}}
@@ -92,8 +92,8 @@ responses:
     - type: slot
       name: language
       value: fr
-    text: D'accord, quand voulez-vous le recevoir?
-  - text: Okay, When would you like to receive it?
+    text: D'accord, à quelle heure voulez-vous le recevoir?
+  - text: Okay, at what time would you like to receive it?
   utter_ask_date:
   - condition:
     - type: slot
@@ -407,7 +407,7 @@ responses:
   - condition:
     - type: slot
       name: date
-      value: Not specified yet
+      value: Another Person
     - type: slot
       name: language
       value: en
@@ -417,7 +417,7 @@ responses:
   - condition:
     - type: slot
       name: date
-      value: Not specified yet
+      value: Another Person
     - type: slot
       name: language
       value: fr
@@ -439,7 +439,7 @@ responses:
 
       À bientôt!"
   - text: "
-      Great, your delivry time and location are confirmed.\n\n
+      Great, your delivery time and location are confirmed.\n\n
 
       Date: {Date} \n\n
 
